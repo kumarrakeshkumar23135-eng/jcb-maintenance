@@ -104,5 +104,39 @@
 <div><p>© <span id="year"></span> JCB Maintenance Services. All rights reserved.</p><p>Independent service business — not an official JCB website unless separately authorized.</p></div>
 </div></footer>
 <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script>
+document.getElementById("jcb-maintenance-request").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+
+  const data = {
+    name: form.customer_name.value,
+    mobile: form.mobile.value,
+    machine: form.machine_details.value,
+    problem: form.problem_description.value,
+    location: form.location.value,
+    photo: form.problem_photo.files.length
+      ? form.problem_photo.files[0].name
+      : ""
+  };
+
+  try {
+    await fetch("https://script.google.com/macros/s/AKfycbwVkb4TL-1xxTLDkQEHPuI52XTkPEgLfroJ1tBT-aW0IDD5TVYhF29ziNyZLVryvRVa/exec", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain"
+      },
+      body: JSON.stringify(data)
+    });
+
+    window.location.href = "success.html";
+
+  } catch (error) {
+    alert("Unable to submit the request. Please try again.");
+  }
+});
+</script>
 </body>
 </html>
