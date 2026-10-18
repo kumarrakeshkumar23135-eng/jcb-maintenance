@@ -133,7 +133,25 @@
 <input type="hidden" name="form-name" value="jcb-maintenance-request">
 <div class="formgrid">
 <div class="field"><label for="name">Customer name *</label><input id="name" name="customer_name" required></div>
-<div class="field"><label for="mobile">Mobile number *</label><input id="mobile" name="mobile" type="tel" required></div>
+
+<div class="field">
+  <label for="mobile">Mobile number *</label>
+  <input
+    id="mobile"
+    name="mobile"
+    type="tel"
+    inputmode="numeric"
+    placeholder="Enter 10-digit mobile number"
+    maxlength="10"
+    pattern="[6-9][0-9]{9}"
+    title="Enter 10 digits starting with 6, 7, 8 or 9"
+    required
+    oninput="validateMobile()">
+  <small id="mobileError" style="color:red;display:none">
+    Invalid number. Enter 10 digits starting with 6, 7, 8 or 9.
+  </small>
+</div>
+
 <div class="field"><label for="email">Email</label><input id="email" name="email" type="email"></div>
 <div class="field"><label for="machine">JCB model / machine no.</label><input id="machine" name="machine_details" placeholder="e.g. 3DX / machine number"></div>
 
@@ -402,6 +420,25 @@ function confirmMachineLocation() {
 function closeMachineMap() {
   document.getElementById("machineMapModal").style.display = "none";
 }
+  
+function validateMobile() {
+  const mobile = document.getElementById("mobile");
+  const error = document.getElementById("mobileError");
+  const valid = /^[6-9][0-9]{9}$/.test(mobile.value);
+
+  if (mobile.value === "" || valid) {
+    error.style.display = "none";
+    mobile.setCustomValidity("");
+  } else {
+    error.style.display = "block";
+    mobile.setCustomValidity(
+      "Enter a valid 10-digit Indian mobile number."
+    );
+  }
+
+  return valid;
+}
+
 </script>
 
 </body>
