@@ -23,7 +23,45 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4571845452510034"
      crossorigin="anonymous"></script>
   <meta name="google-adsense-account" content="ca-pub-4571845452510034">
+  
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+<style>
+#machineMapModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0,0,0,0.65);
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+.machine-map-panel {
+  background: white;
+  width: 100%;
+  max-width: 700px;
+  padding: 16px;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+#machineMap {
+  height: 350px;
+  width: 100%;
+  margin: 12px 0;
+}
+.machine-map-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.machine-map-actions button {
+  padding: 10px;
+  cursor: pointer;
+}
+</style>
 </head>
+
 <body>
 <div class="topbar"><div class="container"><span>Professional Heavy Equipment Maintenance</span><span>Manager: Munshi Ram · <a href="tel:8052587317">8052587317</a></span></div></div>
 
@@ -98,7 +136,18 @@
 <div class="field"><label for="mobile">Mobile number *</label><input id="mobile" name="mobile" type="tel" required></div>
 <div class="field"><label for="email">Email</label><input id="email" name="email" type="email"></div>
 <div class="field"><label for="machine">JCB model / machine no.</label><input id="machine" name="machine_details" placeholder="e.g. 3DX / machine number"></div>
-<div class="field full"><label for="location">Worksite / machine location *</label><input id="location" name="location" required placeholder="Village, city, landmark or Google Maps location"></div>
+
+<div class="field full">
+  <label for="location">Worksite / machine location *</label>
+  <input type="text" id="location" name="location"
+    required readonly
+    placeholder="Choose machine location on map"
+    onclick="openMachineMap()">
+  <button type="button" onclick="openMachineMap()">
+    📍 Choose Location on Map
+  </button>
+</div>
+
 <div class="field"><label for="problem">Problem type *</label>
 <select id="problem" name="problem_type" required><option value="">Select</option><option>Engine / starting</option><option>Hydraulic system</option><option>Electrical</option><option>Transmission / drivetrain</option><option>Bucket / arm / attachment</option><option>Tyre / undercarriage</option><option>Routine maintenance</option><option>Other</option></select></div>
 <div class="field"><label for="priority">Priority</label><select id="priority" name="priority"><option>Normal</option><option>Machine stopped</option><option>Urgent</option></select></div>
@@ -239,5 +288,121 @@ function compressImage(file) {
         <a href="#contact">Contact Us</a>
     </p>
 </footer>
+  
+<div id="machineMapModal">
+  <div class="machine-map-panel">
+    <h3>Choose JCB Machine Location</h3>
+    <p>Click the map to select the machine location.</p>
+
+    <div id="machineMap"></div>
+
+    <p id="machineMapStatus">No location selected yet.</p>
+
+    <button type="button" onclick="useCurrentMachineLocation()">
+      📍 Use My Current Location
+    </button>
+
+    <button type="button" onclick="confirmMachineLocation()">
+      Confirm Location
+    </button>
+
+    <button type="button" onclick="closeMachineMap()">
+      Cancel
+    </button>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+let machineMap;
+let machineMarker;
+let selectedMachinePoint = null;
+
+function openMachineMap() {
+  document.getElementById("machineMapModal").style.display = "flex";
+
+  if (!machineMap) {
+    machineMap = L.map("machineMap").setView([25.3, 83.0], 8);
+
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(machineMap);
+
+    machineMap.on("click", function(e) {
+      setMachinePoint(e.latlng.lat, e.latlng.lng);
+    });
+  }
+
+  setTimeout(function() {
+    machineMap.invalidateSize();
+  }, 200);
+}
+
+function setMachinePoint(lat, lng) {
+  selectedMachinePoint = { lat: lat, lng: lng };
+
+  if (!machineMarker) {
+    machineMarker = L.marker([lat, lng], {
+      draggable: true
+    }).addTo(machineMap);
+
+    machineMarker.on("dragend", function(e) {
+      const p = e.target.getLatLng();
+      setMachinePoint(p.lat, p.lng);
+    });
+  } else {
+    machineMarker.setLatLng([lat, lng]);
+  }
+
+  machineMap.setView([lat, lng], 16);
+
+  document.getElementById("machineMapStatus").textContent =
+    "Selected coordinates: " + lat.toFixed(6) + ", " +
+    lng.toFixed(6);
+}
+
+function useCurrentMachineLocation() {
+  if (!navigator.geolocation) {
+    alert("Your browser does not support location.");
+    return;
+  }
+
+  document.getElementById("machineMapStatus").textContent =
+    "Finding your location...";
+
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      setMachinePoint(
+        position.coords.latitude,
+        position.coords.longitude
+      );
+    },
+    function() {
+      document.getElementById("machineMapStatus").textContent =
+        "Location unavailable. Allow permission or select a point on the map.";
+    },
+    { enableHighAccuracy: true, timeout: 15000 }
+  );
+}
+
+function confirmMachineLocation() {
+  if (!selectedMachinePoint) {
+    alert("Please select a point on the map first.");
+    return;
+  }
+
+  document.getElementById("location").value =
+    "GPS: " + selectedMachinePoint.lat.toFixed(6) + ", " +
+    selectedMachinePoint.lng.toFixed(6);
+
+  closeMachineMap();
+}
+
+function closeMachineMap() {
+  document.getElementById("machineMapModal").style.display = "none";
+}
+</script>
+
 </body>
 </html>
