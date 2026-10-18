@@ -152,7 +152,22 @@
   </small>
 </div>
 
-<div class="field"><label for="email">Email</label><input id="email" name="email" type="email"></div>
+
+<div class="field">
+  <label for="email">Email address</label>
+  <input
+    id="email"
+    name="email"
+    type="email"
+    placeholder="Enter your email address"
+    autocomplete="email"
+    required
+    oninput="validateEmail()">
+  <small id="emailError" style="color:red;display:none">
+    Invalid email address. Please check your email.
+  </small>
+</div>
+
 <div class="field"><label for="machine">JCB model / machine no.</label><input id="machine" name="machine_details" placeholder="e.g. 3DX / machine number"></div>
 
 <div class="field full">
@@ -434,6 +449,25 @@ function validateMobile() {
     mobile.setCustomValidity(
       "Enter a valid 10-digit Indian mobile number."
     );
+  }
+
+  return valid;
+}
+
+  
+function validateEmail() {
+  const email = document.getElementById("email");
+  const error = document.getElementById("emailError");
+
+  const valid =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
+
+  if (email.value === "" || valid) {
+    error.style.display = "none";
+    email.setCustomValidity("");
+  } else {
+    error.style.display = "block";
+    email.setCustomValidity("Please enter a valid email address.");
   }
 
   return valid;
