@@ -21,7 +21,144 @@
 .availability-badge {
   animation: blink247 1.5s infinite;
 }
-</style>
+
+/* Language buttons */
+.language-switch {
+  background: #ffffff;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 8px 4%;
+}
+
+.language-switch button {
+  min-height: 42px;
+  min-width: 76px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+/* Prevent horizontal overflow */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 16px;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Tablet and Android mobile screens */
+@media screen and (max-width: 768px) {
+  .topbar .container {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 14px;
+  }
+
+  .nav .container.navin {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .logo {
+    max-width: 100%;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    width: 100%;
+  }
+
+  .links a {
+    padding: 6px 0;
+    font-size: 14px;
+  }
+
+  .nav .btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 46px;
+    max-width: 100%;
+  }
+
+  .hero-content {
+    padding: 38px 18px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(32px, 8vw, 46px);
+    line-height: 1.12;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .availability-badge,
+  .eyebrow {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  input,
+  select,
+  textarea {
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  button,
+  .btn {
+    touch-action: manipulation;
+  }
+}
+
+/* Extra-small Android screens */
+@media screen and (max-width: 400px) {
+  .language-switch {
+    padding: 8px 12px;
+  }
+
+  .nav .container.navin {
+    padding: 10px 12px;
+  }
+
+  .links {
+    gap: 8px 12px;
+  }
+
+  .hero-content {
+    padding: 28px 14px;
+  }
+
+  .hero-content h1 {
+    font-size: 32px;
+  }
+}
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4571845452510034"
      crossorigin="anonymous"></script>
   <meta name="google-adsense-account" content="ca-pub-4571845452510034">
