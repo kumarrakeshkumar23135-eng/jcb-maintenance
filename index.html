@@ -49,6 +49,32 @@
       background: #e2e8f0;
     }
 
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: #25d366;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 15px;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .whatsapp-float:hover {
+      background-color: #20ba5a;
+      transform: scale(1.05);
+      color: #ffffff;
+    }
+
     /* Prevent horizontal overflow */
     *, *::before, *::after {
       box-sizing: border-box;
@@ -159,6 +185,13 @@
         line-height: 1.65;
       }
 
+      .whatsapp-float {
+        bottom: 16px;
+        right: 16px;
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+
       .availability-badge,
       .eyebrow {
         max-width: 100%;
@@ -211,6 +244,11 @@
 </head>
 
 <body>
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/918052587317?text=Hello%20Munshi%20Ram,%20I%20need%20JCB%20maintenance%20support." class="whatsapp-float" target="_blank" rel="noopener">
+    💬 <span data-en="Chat on WhatsApp" data-hi="व्हाट्सएप पर चैट करें">Chat on WhatsApp</span>
+  </a>
+
   <div class="language-switch" style="text-align:right;padding:10px;">
     <button type="button" onclick="setLanguage('en')">English</button>
     <button type="button" onclick="setLanguage('hi')">हिन्दी</button>
@@ -229,8 +267,10 @@
       <div class="links">
         <a href="#services" data-en="Services" data-hi="सेवाएं">Services</a>
         <a href="#process" data-en="How It Works" data-hi="यह कैसे काम करता है">How It Works</a>
+        <a href="#coverage" data-en="Service Area" data-hi="सेवा क्षेत्र">Service Area</a>
         <a href="#gallery" data-en="Work" data-hi="हमारा कार्य">Work</a>
         <a href="#request" data-en="Service Request" data-hi="सेवा अनुरोध">Service Request</a>
+        <a href="#faq" data-en="FAQ" data-hi="सामान्य प्रश्न">FAQ</a>
         <a href="#contact" data-en="Contact" data-hi="संपर्क करें">Contact</a>
       </div>
       <a class="btn btn-yellow" href="tel:8052587317" data-en="Call Manager" data-hi="मैनेजर को कॉल करें">Call Manager</a>
@@ -261,7 +301,7 @@
     <div class="container">
       <div class="statgrid">
         <div class="stat"><b data-en="Breakdown Support" data-hi="ब्रेकडाउन सहायता">Breakdown Support</b><span data-en="Share the machine problem and location." data-hi="मशीन की समस्या और स्थान साझा करें।">Share the machine problem and location.</span></div>
-        <div class="stat"><b data-en="Photo-Based Diagnosis" data-hi="फोटो आधारित जांच" >Photo-Based Diagnosis</b><span data-en="Upload photos of the issue for quicker review." data-hi="त्वरित समीक्षा के लिए समस्या की तस्वीरें अपलोड करें।">Upload photos of the issue for quicker review.</span></div>
+        <div class="stat"><b data-en="Photo-Based Diagnosis" data-hi="फोटो आधारित जांच">Photo-Based Diagnosis</b><span data-en="Upload photos of the issue for quicker review." data-hi="त्वरित समीक्षा के लिए समस्या की तस्वीरें अपलोड करें।">Upload photos of the issue for quicker review.</span></div>
         <div class="stat"><b data-en="Customer Records" data-hi="ग्राहक रिकॉर्ड">Customer Records</b><span data-en="Service requests are collected in the Netlify dashboard." data-hi="सेवा अनुरोध सीधे डैशबोर्ड में जमा होते हैं।">Service requests are collected in the Netlify dashboard.</span></div>
       </div>
     </div>
@@ -314,6 +354,33 @@
           <div class="icon">03</div>
           <h3 data-en="We contact you" data-hi="हम आपसे संपर्क करेंगे">We contact you</h3>
           <p data-en="Your request is saved and the manager can review the details and contact you." data-hi="आपका अनुरोध सुरक्षित है, मैनेजर विवरण की समीक्षा करके आपसे संपर्क करेंगे।">Your request is saved and the manager can review the details and contact you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Area Coverage Section -->
+  <section id="coverage" class="services" style="background: #f9fafb;">
+    <div class="container">
+      <div class="section-head">
+        <h2 data-en="Service Area & Coverage" data-hi="सेवा क्षेत्र और कवरेज">Service Area & Coverage</h2>
+        <p data-en="We provide rapid on-site maintenance across Varanasi and nearby regional construction sites." data-hi="हम वाराणसी और आसपास के निर्माण स्थलों पर त्वरित ऑन-साइट रखरखाव प्रदान करते हैं।">We provide rapid on-site maintenance across Varanasi and nearby regional construction sites.</p>
+      </div>
+      <div class="grid3">
+        <div class="card">
+          <div class="icon">📍</div>
+          <h3 data-en="Varanasi & City Region" data-hi="वाराणसी और शहरी क्षेत्र">Varanasi & City Region</h3>
+          <p data-en="Quick response team available for urban construction projects and road works." data-hi="शहरी निर्माण परियोजनाओं और सड़क कार्यों के लिए त्वरित प्रतिक्रिया टीम उपलब्ध है।">Quick response team available for urban construction projects and road works.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🚧</div>
+          <h3 data-en="Nearby Highway Sites" data-hi="आसपास के राजमार्ग स्थल">Nearby Highway Sites</h3>
+          <p data-en="On-site breakdown support for highway construction and earthmoving equipment." data-hi="राजमार्ग निर्माण और मिट्टी हटाने वाले उपकरणों के लिए ऑन-साइट ब्रेकडाउन सहायता।">On-site breakdown support for highway construction and earthmoving equipment.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🚚</div>
+          <h3 data-en="Emergency Field Dispatch" data-hi="आपातकालीन फील्ड प्रेषण">Emergency Field Dispatch</h3>
+          <p data-en="Call manager Munshi Ram directly for urgent machinery breakdown assistance." data-hi="अत्यावश्यक मशीनरी खराबी सहायता के लिए प्रबंधक मुंशी राम को सीधे कॉल करें।">Call manager Munshi Ram directly for urgent machinery breakdown assistance.</p>
         </div>
       </div>
     </div>
@@ -428,7 +495,31 @@
     </div>
   </section>
 
-  <section id="contact" class="services">
+  <!-- Frequently Asked Questions (FAQ) Section -->
+  <section id="faq" class="services">
+    <div class="container">
+      <div class="section-head">
+        <h2 data-en="Frequently Asked Questions" data-hi="अक्सर पूछे जाने वाले प्रश्न (FAQ)">Frequently Asked Questions</h2>
+        <p data-en="Got questions about our JCB service? Here are answers to common queries." data-hi="हमारी JCB सेवा के बारे में प्रश्न हैं? यहाँ सामान्य प्रश्नों के उत्तर दिए गए हैं।">Got questions about our JCB service? Here are answers to common queries.</p>
+      </div>
+      <div class="grid3">
+        <div class="card">
+          <h3 data-en="How fast can the team reach?" data-hi="टीम कितनी जल्दी पहुँच सकती है?">How fast can the team reach?</h3>
+          <p data-en="Response time depends on your worksite location around Varanasi and traffic conditions, usually within a few hours." data-hi="प्रतिक्रिया का समय वाराणसी के आसपास आपके कार्यस्थल और यातायात की स्थिति पर निर्भर करता है, आमतौर पर कुछ घंटों के भीतर।">Response time depends on your worksite location around Varanasi and traffic conditions, usually within a few hours.</p>
+        </div>
+        <div class="card">
+          <h3 data-en="What should I prepare before calling?" data-hi="कॉल करने से पहले मुझे क्या तैयार रखना चाहिए?">What should I prepare before calling?</h3>
+          <p data-en="Keep your machine model number (e.g. 3DX), exact location, and a clear description of the problem or error lights ready." data-hi="अपना मशीन मॉडल नंबर (जैसे 3DX), सटीक स्थान और समस्या का विवरण तैयार रखें।">Keep your machine model number (e.g. 3DX), exact location, and a clear description of the problem or error lights ready.</p>
+        </div>
+        <div class="card">
+          <h3 data-en="Can I send photos of the broken part?" data-hi="क्या मैं टूटे हुए हिस्से की फोटो भेज सकता हूँ?">Can I send photos of the broken part?</h3>
+          <p data-en="Yes! You can upload a photo directly through our service request form or share it instantly via our WhatsApp chat button." data-hi="हाँ! आप सीधे हमारे सेवा अनुरोध फॉर्म के माध्यम से फोटो अपलोड कर सकते हैं या व्हाट्सएप चैट के जरिए भेज सकते हैं।">Yes! You can upload a photo directly through our service request form or share it instantly via our WhatsApp chat button.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="services" style="background: #f9fafb;">
     <div class="container">
       <div class="section-head">
         <h2 data-en="Contact" data-hi="संपर्क विवरण">Contact</h2>
@@ -477,7 +568,7 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Language Toggle Switch Logic for Text & Placeholders
+    // Language Toggle Switch Logic for Text, Placeholders & Options
     function setLanguage(language) {
       // 1. Text contents update
       document.querySelectorAll('[data-en][data-hi]').forEach(function (element) {
