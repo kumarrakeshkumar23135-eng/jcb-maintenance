@@ -65,6 +65,10 @@
 </head>
 
 <body>
+  <div class="language-switch" style="text-align:right;padding:10px;">
+  <button type="button" onclick="setLanguage('en')">English</button>
+  <button type="button" onclick="setLanguage('hi')">हिन्दी</button>
+</div>
 <div class="topbar"><div class="container"><span>Professional Heavy Equipment Maintenance</span><span>Manager: Munshi Ram · <a href="tel:8052587317">8052587317</a></span></div></div>
 
 <nav class="nav"><div class="container navin">
@@ -482,5 +486,37 @@ function validateEmail() {
 
 </script>
 
+  <script>
+  function setLanguage(language) {
+    document.querySelectorAll('[data-en][data-hi]').forEach(function (element) {
+      element.textContent =
+        language === 'hi'
+          ? element.getAttribute('data-hi')
+          : element.getAttribute('data-en');
+    });
+
+    document.querySelectorAll('[data-placeholder-en][data-placeholder-hi]')
+      .forEach(function (element) {
+        element.placeholder =
+          language === 'hi'
+            ? element.getAttribute('data-placeholder-hi')
+            : element.getAttribute('data-placeholder-en');
+      });
+
+    document.documentElement.lang = language;
+
+    try {
+      localStorage.setItem('jcbLanguage', language);
+    } catch (error) {}
+  }
+
+  let savedLanguage = 'en';
+
+  try {
+    savedLanguage = localStorage.getItem('jcbLanguage') || 'en';
+  } catch (error) {}
+
+  setLanguage(savedLanguage);
+</script>
 </body>
 </html>
