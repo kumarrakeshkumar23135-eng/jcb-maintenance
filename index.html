@@ -2,700 +2,680 @@
 <html lang="en">
 <head>
   <meta name="google-site-verification" content="fs2CtFEkLTS6u1aa_x_xtEs9gDBNzE3YGhrvY82e7W8" />
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>JCB Maintenance Services | Fast Field Support</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JCB Maintenance Services | Fast Field Support</title>
 
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
   
-<meta name="description" content="JCB Maintenance Services provides professional JCB machine maintenance, breakdown assistance, repair support, and field service. Customers can submit service requests with their name, phone number, machine problem description, location, and photos. Contact manager Munshi Ram for JCB maintenance support.">
-<link rel="stylesheet" href="styles.css">
-<style>
-@keyframes blink247 {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
+  <meta name="description" content="JCB Maintenance Services provides professional JCB machine maintenance, breakdown assistance, repair support, and field service. Customers can submit service requests with their name, phone number, machine problem description, location, and photos. Contact manager Munshi Ram for JCB maintenance support.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
-.availability-badge {
-  animation: blink247 1.5s infinite;
-}
+  <style>
+    @keyframes blink247 {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
 
-/* Language buttons */
-.language-switch {
-  background: #ffffff;
-  max-width: 100%;
-  box-sizing: border-box;
-  padding: 8px 4%;
-}
+    .availability-badge {
+      animation: blink247 1.5s infinite;
+    }
 
-.language-switch button {
-  min-height: 42px;
-  min-width: 76px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 14px;
-  transition: background 0.2s ease;
-}
+    /* Language buttons */
+    .language-switch {
+      background: #ffffff;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 8px 4%;
+    }
 
-/* Prevent horizontal overflow */
-* {
-  box-sizing: border-box;
-}
+    .language-switch button {
+      min-height: 42px;
+      min-width: 76px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: background 0.2s ease;
+      cursor: pointer;
+    }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 16px;
-}
+    /* Prevent horizontal overflow */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  width: 100%;
-  overflow-x: hidden;
-}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 16px;
+    }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
+    body {
+      margin: 0;
+      width: 100%;
+      overflow-x: hidden;
+    }
 
-/* Tablet and Android mobile screens */
-@media screen and (max-width: 768px) {
-  .topbar .container {
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 10px 14px;
-  }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
 
-  .nav .container.navin {
-    flex-wrap: wrap;
-    gap: 12px;
-    padding: 12px 14px;
-  }
+    /* Map Modal Styles */
+    #machineMapModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: rgba(0,0,0,0.65);
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+    .machine-map-panel {
+      background: white;
+      width: 100%;
+      max-width: 700px;
+      padding: 16px;
+      border-radius: 14px;
+      box-sizing: border-box;
+    }
+    #machineMap {
+      height: 350px;
+      width: 100%;
+      margin: 12px 0;
+    }
+    .machine-map-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .machine-map-actions button {
+      padding: 10px;
+      cursor: pointer;
+    }
 
-  .logo {
-    max-width: 100%;
-  }
+    /* Tablet and Android mobile screens */
+    @media screen and (max-width: 768px) {
+      .topbar .container {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px 14px;
+      }
 
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px 16px;
-    width: 100%;
-  }
+      .nav .container.navin {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+      }
 
-  .links a {
-    padding: 6px 0;
-    font-size: 14px;
-  }
+      .logo {
+        max-width: 100%;
+      }
 
-  .nav .btn {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 46px;
-    max-width: 100%;
-  }
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 16px;
+        width: 100%;
+      }
 
-  .hero-content {
-    padding: 38px 18px;
-  }
+      .links a {
+        padding: 6px 0;
+        font-size: 14px;
+      }
 
-  .hero-content h1 {
-    font-size: clamp(32px, 8vw, 46px);
-    line-height: 1.12;
-    overflow-wrap: anywhere;
-  }
+      .nav .btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 46px;
+        max-width: 100%;
+      }
 
-  .hero-content p {
-    font-size: 16px;
-    line-height: 1.65;
-  }
+      .hero-content {
+        padding: 38px 18px;
+      }
 
-  .availability-badge,
-  .eyebrow {
-    max-width: 100%;
-    flex-wrap: wrap;
-  }
+      .hero-content h1 {
+        font-size: clamp(32px, 8vw, 46px);
+        line-height: 1.12;
+        overflow-wrap: anywhere;
+      }
 
-  .container {
-    max-width: 100%;
-  }
+      .hero-content p {
+        font-size: 16px;
+        line-height: 1.65;
+      }
 
-  input,
-  select,
-  textarea {
-    max-width: 100%;
-    font-size: 16px;
-  }
+      .availability-badge,
+      .eyebrow {
+        max-width: 100%;
+        flex-wrap: wrap;
+      }
 
-  button,
-  .btn {
-    touch-action: manipulation;
-  }
-}
+      .container {
+        max-width: 100%;
+      }
 
-/* Extra-small Android screens */
-@media screen and (max-width: 400px) {
-  .language-switch {
-    padding: 8px 12px;
-  }
+      input,
+      select,
+      textarea {
+        max-width: 100%;
+        font-size: 16px;
+      }
 
-  .nav .container.navin {
-    padding: 10px 12px;
-  }
+      button,
+      .btn {
+        touch-action: manipulation;
+      }
+    }
 
-  .links {
-    gap: 8px 12px;
-  }
+    /* Extra-small Android screens */
+    @media screen and (max-width: 400px) {
+      .language-switch {
+        padding: 8px 12px;
+      }
 
-  .hero-content {
-    padding: 28px 14px;
-  }
+      .nav .container.navin {
+        padding: 10px 12px;
+      }
 
-  .hero-content h1 {
-    font-size: 32px;
-  }
-}
+      .links {
+        gap: 8px 12px;
+      }
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4571845452510034"
-     crossorigin="anonymous"></script>
+      .hero-content {
+        padding: 24px 12px;
+      }
+
+      .hero-content h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4571845452510034" crossorigin="anonymous"></script>
   <meta name="google-adsense-account" content="ca-pub-4571845452510034">
-  
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-
-<style>
-#machineMapModal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: rgba(0,0,0,0.65);
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-}
-.machine-map-panel {
-  background: white;
-  width: 100%;
-  max-width: 700px;
-  padding: 16px;
-  border-radius: 14px;
-  box-sizing: border-box;
-}
-#machineMap {
-  height: 350px;
-  width: 100%;
-  margin: 12px 0;
-}
-.machine-map-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.machine-map-actions button {
-  padding: 10px;
-  cursor: pointer;
-}
-  /* Improve the navigation on Android phones */
-@media screen and (max-width: 768px) {
-  .nav .container.navin {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 14px;
-  }
-
-  .logo {
-    max-width: 100%;
-  }
-
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 16px;
-    width: 100%;
-  }
-
-  .links a {
-    font-size: 14px;
-    padding: 8px 0;
-  }
-
-  .nav .btn {
-    min-height: 44px;
-  }
-
-  .hero-content {
-    padding: 30px 16px;
-  }
-
-  .hero-content h1 {
-    font-size: clamp(32px, 8vw, 44px);
-    line-height: 1.12;
-  }
-
-  .hero-content p {
-    font-size: 16px;
-    line-height: 1.6;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .links {
-    gap: 8px 12px;
-  }
-
-  .hero-content {
-    padding: 24px 12px;
-  }
-
-  .hero-content h1 {
-    font-size: 30px;
-  }
-}
-</style>
 </head>
 
 <body>
   <div class="language-switch" style="text-align:right;padding:10px;">
-  <button type="button" onclick="setLanguage('en')">English</button>
-  <button type="button" onclick="setLanguage('hi')">हिन्दी</button>
-</div>
-<div class="topbar"><div class="container"><span>Professional Heavy Equipment Maintenance</span><span>Manager: Munshi Ram · <a href="tel:8052587317">8052587317</a></span></div></div>
+    <button type="button" onclick="setLanguage('en')">English</button>
+    <button type="button" onclick="setLanguage('hi')">हिन्दी</button>
+  </div>
 
-<nav class="nav"><div class="container navin">
-<a class="logo" href="#"><span class="logo-mark">JM</span><span>JCB MAINTENANCE<small>FIELD SERVICE & SUPPORT</small></span></a>
-<div class="links"><a href="#services">Services</a><a href="#process">How It Works</a><a href="#gallery">Work</a><a href="#request">Service Request</a><a href="#contact">Contact</a></div>
-<a class="btn btn-yellow" href="tel:8052587317">Call Manager</a>
-</div></nav>
+  <div class="topbar">
+    <div class="container">
+      <span>Professional Heavy Equipment Maintenance</span>
+      <span>Manager: Munshi Ram · <a href="tel:8052587317">8052587317</a></span>
+    </div>
+  </div>
 
-<header class="hero"><div class="container"><div class="hero-content">
-<div class="availability-badge" style="display:inline-flex;align-items:center;gap:8px;background:#292012;border:1px solid #8a5b00;border-radius:25px;padding:10px 16px;margin-bottom:18px;color:#ffa500;font-size:14px;">
+  <nav class="nav">
+    <div class="container navin">
+      <a class="logo" href="#"><span class="logo-mark">JM</span><span>JCB MAINTENANCE<small>FIELD SERVICE & SUPPORT</small></span></a>
+      <div class="links">
+        <a href="#services">Services</a>
+        <a href="#process">How It Works</a>
+        <a href="#gallery">Work</a>
+        <a href="#request">Service Request</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="btn btn-yellow" href="tel:8052587317">Call Manager</a>
+    </div>
+  </nav>
 
-  <span style="color:#22c55e;">●</span> Available 24/7 for JCB Services
-</div>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="availability-badge" style="display:inline-flex;align-items:center;gap:8px;background:#292012;border:1px solid #8a5b00;border-radius:25px;padding:10px 16px;margin-bottom:18px;color:#ffa500;font-size:14px;">
+          <span style="color:#22c55e;">●</span> Available 24/7 for JCB Services
+        </div>
 
-<header> 
-<span class="eyebrow" data-en="Machine down? Get help." data-hi="मशीन खराब है? सहायता लें।">Machine down? Get help.</span>
+        <span class="eyebrow" data-en="Machine down? Get help." data-hi="मशीन खराब है? सहायता लें।">Machine down? Get help.</span>
 
-<h1 data-en="Keep your JCB working. Keep your project moving." data-hi="अपनी JCB चालू रखें। अपना काम आगे बढ़ाते रहें।">Keep your JCB working. Keep your project moving.</h1>
+        <h1 data-en="Keep your JCB working. Keep your project moving." data-hi="अपनी JCB चालू रखें। अपना काम आगे बढ़ाते रहें।">Keep your JCB working. Keep your project moving.</h1>
 
-<p data-en="Professional field maintenance and breakdown support for JCB construction equipment, with a simple service-request system for customers." data-hi="JCB मशीनों की मरम्मत और खराबी के समय सहायता पाएँ। ग्राहकों के लिए सेवा अनुरोध भेजने की आसान सुविधा।">Professional field maintenance and breakdown support for JCB construction equipment, with a simple service-request system for customers.</p>
+        <p data-en="Professional field maintenance and breakdown support for JCB construction equipment, with a simple service-request system for customers." data-hi="JCB मशीनों की मरम्मत और खराबी के समय सहायता पाएँ। ग्राहकों के लिए सेवा अनुरोध भेजने की आसान सुविधा।">Professional field maintenance and breakdown support for JCB construction equipment, with a simple service-request system for customers.</p>
 
-<div class="actions">
-  <a href="#request" style="display:inline-block;background:#ffcc00;color:#000;padding:16px 20px;border-radius:12px;text-decoration:none;font-weight:700;" data-en="Request Maintenance" data-hi="मरम्मत के लिए अनुरोध करें">Request Maintenance</a>
-</div>
+        <div class="actions">
+          <a href="#request" style="display:inline-block;background:#ffcc00;color:#000;padding:16px 20px;border-radius:12px;text-decoration:none;font-weight:700;" data-en="Request Maintenance" data-hi="मरम्मत के लिए अनुरोध करें">Request Maintenance</a>
+        </div>
+      </div>
+    </div>
+  </header>
 
-</header>
+  <div class="stats">
+    <div class="container">
+      <div class="statgrid">
+        <div class="stat"><b>Breakdown Support</b><span>Share the machine problem and location.</span></div>
+        <div class="stat"><b>Photo-Based Diagnosis</b><span>Upload photos of the issue for quicker review.</span></div>
+        <div class="stat"><b>Customer Records</b><span>Service requests are collected in the Netlify dashboard.</span></div>
+      </div>
+    </div>
+  </div>
 
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Maintenance that focuses on uptime.</h2>
+        <p>Designed for operators, contractors and machine owners who need a clear way to request service and explain a machine problem.</p>
+      </div>
+      <div class="grid3">
+        <div class="card"><div class="icon">🔧</div><h3>Breakdown Inspection</h3><p>Capture the machine symptoms, location and photos so the service team can understand the problem before visiting.</p></div>
+        <div class="card"><div class="icon">⚙️</div><h3>Routine Maintenance</h3><p>Plan maintenance work and keep a record of machine details and service requirements.</p></div>
+        <div class="card"><div class="icon">🛠️</div><h3>Field Service</h3><p>On-site support for construction equipment issues, subject to service-area availability.</p></div>
+      </div>
+    </div>
+  </section>
 
-<div class="stats"><div class="container"><div class="statgrid">
-<div class="stat"><b>Breakdown Support</b><span>Share the machine problem and location.</span></div>
-<div class="stat"><b>Photo-Based Diagnosis</b><span>Upload photos of the issue for quicker review.</span></div>
-<div class="stat"><b>Customer Records</b><span>Service requests are collected in the Netlify dashboard.</span></div>
-</div></div></div>
+  <section id="process">
+    <div class="container">
+      <div class="section-head">
+        <h2>Simple service process</h2>
+        <p>Three steps from problem to service coordination.</p>
+      </div>
+      <div class="grid3">
+        <div class="card"><div class="icon">01</div><h3>Tell us the problem</h3><p>Enter your name, mobile number, machine information and what went wrong.</p></div>
+        <div class="card"><div class="icon">02</div><h3>Share location & photos</h3><p>Provide the worksite location and upload a clear photo of the problem area.</p></div>
+        <div class="card"><div class="icon">03</div><h3>We contact you</h3><p>Your request is saved and the manager can review the details and contact you.</p></div>
+      </div>
+    </div>
+  </section>
 
-<section id="services" class="services"><div class="container">
-<div class="section-head"><h2>Maintenance that focuses on uptime.</h2><p>Designed for operators, contractors and machine owners who need a clear way to request service and explain a machine problem.</p></div>
-<div class="grid3">
-<div class="card"><div class="icon">🔧</div><h3>Breakdown Inspection</h3><p>Capture the machine symptoms, location and photos so the service team can understand the problem before visiting.</p></div>
-<div class="card"><div class="icon">⚙️</div><h3>Routine Maintenance</h3><p>Plan maintenance work and keep a record of machine details and service requirements.</p></div>
-<div class="card"><div class="icon">🛠️</div><h3>Field Service</h3><p>On-site support for construction equipment issues, subject to service-area availability.</p></div>
-</div>
-</div></section>
+  <section class="dark" id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <h2>Built for heavy-duty work.</h2>
+        <p>Professional visual presentation inspired by modern construction-equipment service websites. Replace these sample images with your own work photos anytime.</p>
+      </div>
+      <div class="gallery">
+        <img src="jcb-machine.jpg.img" alt="JCB machine at work">
+        <img src="jcb-repair.jpg.img" alt="JCB repair service">
+        <img src="jcb-repairing.jpg.img" alt="JCB maintenance">
+        <img src="jcb-worksite.jpg.img" alt="JCB worksite">
+      </div>
+    </div>
+  </section>
 
-<section id="process"><div class="container">
-<div class="section-head"><h2>Simple service process</h2><p>Three steps from problem to service coordination.</p></div>
-<div class="grid3">
-<div class="card"><div class="icon">01</div><h3>Tell us the problem</h3><p>Enter your name, mobile number, machine information and what went wrong.</p></div>
-<div class="card"><div class="icon">02</div><h3>Share location & photos</h3><p>Provide the worksite location and upload a clear photo of the problem area.</p></div>
-<div class="card"><div class="icon">03</div><h3>We contact you</h3><p>Your request is saved and the manager can review the details and contact you.</p></div>
-</div>
-</div></section>
+  <section id="request">
+    <div class="container">
+      <div class="section-head">
+        <h2>Request JCB maintenance</h2>
+        <p>Submit your customer and machine details. The form is configured for Netlify Forms, so submissions can be reviewed from your Netlify site dashboard.</p>
+      </div>
+      <div class="form-wrap">
+        <div class="contactbox">
+          <h3>Manager</h3>
+          <div class="contactline"><strong>Munshi Ram</strong><br><span>Service Manager</span></div>
+          <div class="contactline"><strong>Adarsh</strong><br><span>Developer</span></div>
+          <div class="contactline">📞 <a href="tel:8052587317">8052587317</a></div>
+          <div class="contactline">✉️ <a href="mailto:kumarrakeshkumar23135@gmail.com">kumarrakeshkumar23135@gmail.com</a></div>
+          <div class="contactline">📍 Service location: <strong>Update this before publishing</strong></div>
+          <p style="margin-top:18px">For emergencies, call the manager directly. Website requests are reviewed from the business dashboard.</p>
+        </div>
 
-<section class="dark" id="gallery"><div class="container">
-<div class="section-head"><h2>Built for heavy-duty work.</h2><p>Professional visual presentation inspired by modern construction-equipment service websites. Replace these sample images with your own work photos anytime.</p></div>
-<div class="gallery">
+        <form name="jcb-maintenance-request" id="jcb-maintenance-request">
+          <input type="hidden" name="form-name" value="jcb-maintenance-request">
+          <div class="formgrid">
+            <div class="field"><label for="name">Customer name *</label><input id="name" name="customer_name" required></div>
 
-<img src="jcb-machine.jpg.img" alt="JCB machine at work">
-<img src="jcb-repair.jpg.img" alt="JCB repair service">
-<img src="jcb-repairing.jpg.img" alt="JCB maintenance">
-<img src="jcb-worksite.jpg.img" alt="JCB worksite">
+            <div class="field">
+              <label for="mobile">Mobile number *</label>
+              <input id="mobile" name="mobile" type="tel" inputmode="numeric" placeholder="Enter 10-digit mobile number" maxlength="10" pattern="[6-9][0-9]{9}" title="Enter 10 digits starting with 6, 7, 8 or 9" required oninput="validateMobile()">
+              <small id="mobileError" style="color:red;display:none">Invalid number. Enter 10 digits starting with 6, 7, 8 or 9.</small>
+            </div>
 
-</div>
-</div></section>
+            <div class="field">
+              <label for="email">Email address</label>
+              <input id="email" name="email" type="email" placeholder="Enter your email address" autocomplete="email" required oninput="validateEmail()">
+              <small id="emailError" style="color:red;display:none">Invalid email address. Please check your email.</small>
+            </div>
 
-<section id="request"><div class="container">
-<div class="section-head"><h2>Request JCB maintenance</h2><p>Submit your customer and machine details. The form is configured for Netlify Forms, so submissions can be reviewed from your Netlify site dashboard.</p></div>
-<div class="form-wrap">
-<div class="contactbox">
-<h3>Manager</h3>
-<div class="contactline"><strong>Munshi Ram</strong><br><span>Service Manager</span></div>
-<div class="contactline"><strong>Adarsh</strong><br><span>Developer</span></div>
-<div class="contactline">📞 <a href="tel:8052587317">8052587317</a></div>
-<div class="contactline">✉️ <a href="mailto:kumarrakeshkumar23135@gmail.com">kumarrakeshkumar23135@gmail.com</a></div>
-<div class="contactline">📍 Service location: <strong>Update this before publishing</strong></div>
-<p style="margin-top:18px">For emergencies, call the manager directly. Website requests are reviewed from the business dashboard.</p>
-</div>
+            <div class="field"><label for="machine">JCB model / machine no.</label><input id="machine" name="machine_details" placeholder="e.g. 3DX / machine number"></div>
 
-<form name="jcb-maintenance-request" id="jcb-maintenance-request">
-<input type="hidden" name="form-name" value="jcb-maintenance-request">
-<div class="formgrid">
-<div class="field"><label for="name">Customer name *</label><input id="name" name="customer_name" required></div>
+            <div class="field full">
+              <label for="location">Worksite / machine location *</label>
+              <input type="text" id="location" name="location" required readonly placeholder="Choose machine location on map" onclick="openMachineMap()">
+              <button type="button" onclick="openMachineMap()" style="margin-top: 6px; padding: 8px 12px; cursor: pointer;">📍 Choose Location on Map</button>
+            </div>
 
-<div class="field">
-  <label for="mobile">Mobile number *</label>
-  <input
-    id="mobile"
-    name="mobile"
-    type="tel"
-    inputmode="numeric"
-    placeholder="Enter 10-digit mobile number"
-    maxlength="10"
-    pattern="[6-9][0-9]{9}"
-    title="Enter 10 digits starting with 6, 7, 8 or 9"
-    required
-    oninput="validateMobile()">
-  <small id="mobileError" style="color:red;display:none">
-    Invalid number. Enter 10 digits starting with 6, 7, 8 or 9.
-  </small>
-</div>
+            <div class="field">
+              <label for="problem">Problem type *</label>
+              <select id="problem" name="problem_type" required>
+                <option value="">Select</option>
+                <option>Engine / starting</option>
+                <option>Hydraulic system</option>
+                <option>Electrical</option>
+                <option>Transmission / drivetrain</option>
+                <option>Bucket / arm / attachment</option>
+                <option>Tyre / undercarriage</option>
+                <option>Routine maintenance</option>
+                <option>Other</option>
+              </select>
+            </div>
 
+            <div class="field">
+              <label for="priority">Priority</label>
+              <select id="priority" name="priority">
+                <option>Normal</option>
+                <option>Machine stopped</option>
+                <option>Urgent</option>
+              </select>
+            </div>
 
-<div class="field">
-  <label for="email">Email address</label>
-  <input
-    id="email"
-    name="email"
-    type="email"
-    placeholder="Enter your email address"
-    autocomplete="email"
-    required
-    oninput="validateEmail()">
-  <small id="emailError" style="color:red;display:none">
-    Invalid email address. Please check your email.
-  </small>
-</div>
+            <div class="field full">
+              <label for="description">Describe the problem *</label>
+              <textarea id="description" name="problem_description" required placeholder="Tell us what happened, warning lights, unusual noise, leakage, etc."></textarea>
+            </div>
 
-<div class="field"><label for="machine">JCB model / machine no.</label><input id="machine" name="machine_details" placeholder="e.g. 3DX / machine number"></div>
+            <div class="field full">
+              <label for="photo">Upload problem photo</label>
+              <input id="photo" name="problem_photo" type="file" accept="image/*">
+            </div>
 
-<div class="field full">
-  <label for="location">Worksite / machine location *</label>
-  <input type="text" id="location" name="location"
-    required readonly
-    placeholder="Choose machine location on map"
-    onclick="openMachineMap()">
-  <button type="button" onclick="openMachineMap()">
-    📍 Choose Location on Map
-  </button>
-</div>
+            <div class="field full">
+              <label><input type="checkbox" name="permission" value="yes" required style="width:auto;margin-right:8px"> I agree that the service team may use these details to contact me about this maintenance request.</label>
+            </div>
+          </div>
+          <p class="notice">Please do not upload passwords, payment information or other unnecessary personal documents.</p>
+          <button class="btn btn-yellow" type="submit">Submit Service Request →</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-<div class="field"><label for="problem">Problem type *</label>
-<select id="problem" name="problem_type" required><option value="">Select</option><option>Engine / starting</option><option>Hydraulic system</option><option>Electrical</option><option>Transmission / drivetrain</option><option>Bucket / arm / attachment</option><option>Tyre / undercarriage</option><option>Routine maintenance</option><option>Other</option></select></div>
-<div class="field"><label for="priority">Priority</label><select id="priority" name="priority"><option>Normal</option><option>Machine stopped</option><option>Urgent</option></select></div>
-<div class="field full"><label for="description">Describe the problem *</label><textarea id="description" name="problem_description" required placeholder="Tell us what happened, warning lights, unusual noise, leakage, etc."></textarea></div>
-<div class="field full"><label for="photo">Upload problem photo</label><input id="photo" name="problem_photo" type="file" accept="image/*"></div>
-<div class="field full"><label><input type="checkbox" name="permission" value="yes" required style="width:auto;margin-right:8px"> I agree that the service team may use these details to contact me about this maintenance request.</label></div>
-</div>
-<p class="notice">Please do not upload passwords, payment information or other unnecessary personal documents.</p>
-<button class="btn btn-yellow" type="submit">Submit Service Request →</button>
-</form>
-</div>
-</div></section>
+  <section id="contact" class="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p>For direct assistance, contact the manager.</p>
+      </div>
+      <div class="grid3">
+        <div class="card"><h3>Manager</h3><p><strong>Munshi Ram</strong><br>Service Manager</p></div>
+        <div class="card"><h3>Phone</h3><p><a href="tel:8052587317">8052587317</a></p></div>
+        <div class="card"><h3>Email</h3><p><a href="mailto:kumarrakeshkumar23135@gmail.com">kumarrakeshkumar23135@gmail.com</a></p></div>
+      </div>
+    </div>
+  </section>
 
-<section id="contact" class="services"><div class="container">
-<div class="section-head"><h2>Contact</h2><p>For direct assistance, contact the manager.</p></div>
-<div class="grid3">
-<div class="card"><h3>Manager</h3><p><strong>Munshi Ram</strong><br>Service Manager</p></div>
-<div class="card"><h3>Phone</h3><p><a href="tel:8052587317">8052587317</a></p></div>
-<div class="card"><h3>Email</h3><p><a href="mailto:kumarrakeshkumar23135@gmail.com">kumarrakeshkumar23135@gmail.com</a></p></div>
-</div>
-</div></section>
+  <footer>
+    <div class="container footerin">
+      <div>
+        <div class="logo"><span class="logo-mark">JM</span><span>JCB MAINTENANCE<small>FIELD SERVICE & SUPPORT</small></span></div>
+        <p style="margin-top:12px">Professional maintenance-request website for heavy equipment service. Update the service address and replace sample work photos before publishing.</p>
+      </div>
+      <div>
+        <p>© <span id="year"></span> JCB Maintenance Services. All rights reserved.</p>
+        <p>Independent service business — not an official JCB website unless separately authorized.</p>
+        <p style="margin-top: 10px;">
+          <a href="privacy.html">Privacy Policy</a> &nbsp; | &nbsp; <a href="#contact">Contact Us</a>
+        </p>
+      </div>
+    </div>
+  </footer>
 
-<footer><div class="container footerin">
-<div><div class="logo"><span class="logo-mark">JM</span><span>JCB MAINTENANCE<small>FIELD SERVICE & SUPPORT</small></span></div><p style="margin-top:12px">Professional maintenance-request website for heavy equipment service. Update the service address and replace sample work photos before publishing.</p></div>
-<div><p>© <span id="year"></span> JCB Maintenance Services. All rights reserved.</p><p>Independent service business — not an official JCB website unless separately authorized.</p></div>
-</div></footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-<script>
-document.getElementById("jcb-maintenance-request").addEventListener("submit", async function(e) {
-  e.preventDefault();
+  <!-- MAP MODAL CONTAINER (ADDED MISSING HTML) -->
+  <div id="machineMapModal">
+    <div class="machine-map-panel">
+      <h3>Select Machine Location</h3>
+      <div id="machineMap"></div>
+      <div id="machineMapStatus" style="margin: 8px 0; font-size: 14px; color: #555;">Click on the map or use current location button.</div>
+      <div class="machine-map-actions">
+        <button type="button" class="btn" onclick="useCurrentMachineLocation()">Use Current Location</button>
+        <button type="button" class="btn" style="background:#ffcc00; font-weight:700;" onclick="confirmMachineLocation()">Confirm Location</button>
+        <button type="button" class="btn" onclick="closeMachineMap()">Cancel</button>
+      </div>
+    </div>
+  </div>
 
-  const form = e.target;
-  const photoFile = form.problem_photo.files[0];
+  <!-- SCRIPTS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  let photoBase64 = "";
-  let photoMimeType = "";
-  let photoName = "";
+    // Form Submission & Image Compression
+    document.getElementById("jcb-maintenance-request").addEventListener("submit", async function(e) {
+      e.preventDefault();
 
-  if (photoFile) {
-    photoBase64 = await compressImage(photoFile);
-    photoMimeType = "image/jpeg";
-    photoName = photoFile.name.replace(/\.[^/.]+$/, "") + ".jpg";
-  }
+      const form = e.target;
+      const photoFile = form.problem_photo.files[0];
 
-  const problemType = form.problem_type.value;
-  const problemDescription = form.problem_description.value;
+      let photoBase64 = "";
+      let photoMimeType = "";
+      let photoName = "";
 
-  const data = {
-    name: form.customer_name.value,
-    mobile: form.mobile.value,
-    email: form.email.value,
-    machine: form.machine_details.value,
-    problem: problemType + " - " + problemDescription,
-    location: form.location.value,
-    priority: form.priority.value,
-    description: problemDescription,
-    photoBase64: photoBase64,
-    photoMimeType: photoMimeType,
-    photoName: photoName
-  };
+      if (photoFile) {
+        photoBase64 = await compressImage(photoFile);
+        photoMimeType = "image/jpeg";
+        photoName = photoFile.name.replace(/\.[^/.]+$/, "") + ".jpg";
+      }
 
-  try {
-    await fetch("https://script.google.com/macros/s/AKfycbwVkb4TL-1xxTLDkQEHPuI52XTkPEgLfroJ1tBT-aW0IDD5TVYhF29ziNyZLVryvRVa/exec", {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "text/plain"
-      },
-      body: JSON.stringify(data)
-    });
+      const problemType = form.problem_type.value;
+      const problemDescription = form.problem_description.value;
 
-    window.location.href = "success.html";
-
-  } catch (error) {
-    alert("Unable to submit the request. Please try again.");
-  }
-});
-
-
-function compressImage(file) {
-  return new Promise((resolve, reject) => {
-
-    const reader = new FileReader();
-
-    reader.onload = function() {
-
-      const img = new Image();
-
-      img.onload = function() {
-
-        const maxSize = 1600;
-
-        let width = img.width;
-        let height = img.height;
-
-        if (width > maxSize || height > maxSize) {
-
-          if (width > height) {
-            height = Math.round(height * maxSize / width);
-            width = maxSize;
-          } else {
-            width = Math.round(width * maxSize / height);
-            height = maxSize;
-          }
-        }
-
-        const canvas = document.createElement("canvas");
-
-        canvas.width = width;
-        canvas.height = height;
-
-        const ctx = canvas.getContext("2d");
-
-        ctx.drawImage(img, 0, 0, width, height);
-
-        const base64 = canvas
-          .toDataURL("image/jpeg", 0.75)
-          .split(",")[1];
-
-        resolve(base64);
+      const data = {
+        name: form.customer_name.value,
+        mobile: form.mobile.value,
+        email: form.email.value,
+        machine: form.machine_details.value,
+        problem: problemType + " - " + problemDescription,
+        location: form.location.value,
+        priority: form.priority.value,
+        description: problemDescription,
+        photoBase64: photoBase64,
+        photoMimeType: photoMimeType,
+        photoName: photoName
       };
 
-      img.onerror = reject;
-      img.src = reader.result;
-    };
+      try {
+        await fetch("https://script.google.com/macros/s/AKfycbwVkb4TL-1xxTLDkQEHPuI52XTkPEgLfroJ1tBT-aW0IDD5TVYhF29ziNyZLVryvRVa/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "text/plain"
+          },
+          body: JSON.stringify(data)
+        });
 
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
-</script>
-  <footer style="text-align:center; padding:25px 15px; border-top:1px solid #ddd;">
-    <p>© 2026 JCB Maintenance Services. All Rights Reserved.</p>
+        window.location.href = "success.html";
 
-    <p>
-        <a href="privacy.html">Privacy Policy</a>
-        &nbsp; | &nbsp;
-        <a href="#contact">Contact Us</a>
-    </p>
-</footer>
-</div>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-let machineMap;
-let machineMarker;
-let selectedMachinePoint = null;
-
-function openMachineMap() {
-  document.getElementById("machineMapModal").style.display = "flex";
-
-  if (!machineMap) {
-    machineMap = L.map("machineMap").setView([25.3, 83.0], 8);
-
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: "&copy; OpenStreetMap contributors"
-    }).addTo(machineMap);
-
-    machineMap.on("click", function(e) {
-      setMachinePoint(e.latlng.lat, e.latlng.lng);
+      } catch (error) {
+        alert("Unable to submit the request. Please try again.");
+      }
     });
-  }
 
-  setTimeout(function() {
-    machineMap.invalidateSize();
-  }, 200);
-}
+    function compressImage(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = function() {
+          const img = new Image();
+          img.onload = function() {
+            const maxSize = 1600;
+            let width = img.width;
+            let height = img.height;
 
-function setMachinePoint(lat, lng) {
-  selectedMachinePoint = { lat: lat, lng: lng };
+            if (width > maxSize || height > maxSize) {
+              if (width > height) {
+                height = Math.round(height * maxSize / width);
+                width = maxSize;
+              } else {
+                width = Math.round(width * maxSize / height);
+                height = maxSize;
+              }
+            }
 
-  if (!machineMarker) {
-    machineMarker = L.marker([lat, lng], {
-      draggable: true
-    }).addTo(machineMap);
+            const canvas = document.createElement("canvas");
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
 
-    machineMarker.on("dragend", function(e) {
-      const p = e.target.getLatLng();
-      setMachinePoint(p.lat, p.lng);
-    });
-  } else {
-    machineMarker.setLatLng([lat, lng]);
-  }
+            const base64 = canvas.toDataURL("image/jpeg", 0.75).split(",")[1];
+            resolve(base64);
+          };
+          img.onerror = reject;
+          img.src = reader.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
 
-  machineMap.setView([lat, lng], 16);
+    // Leaflet Map Script Logic
+    let machineMap;
+    let machineMarker;
+    let selectedMachinePoint = null;
 
-  document.getElementById("machineMapStatus").textContent =
-    "Selected coordinates: " + lat.toFixed(6) + ", " +
-    lng.toFixed(6);
-}
+    function openMachineMap() {
+      document.getElementById("machineMapModal").style.display = "flex";
 
-function useCurrentMachineLocation() {
-  if (!navigator.geolocation) {
-    alert("Your browser does not support location.");
-    return;
-  }
+      if (!machineMap) {
+        machineMap = L.map("machineMap").setView([25.3, 83.0], 8);
 
-  document.getElementById("machineMapStatus").textContent =
-    "Finding your location...";
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution: "&copy; OpenStreetMap contributors"
+        }).addTo(machineMap);
 
-  navigator.geolocation.getCurrentPosition(
-    function(position) {
-      setMachinePoint(
-        position.coords.latitude,
-        position.coords.longitude
-      );
-    },
-    function() {
+        machineMap.on("click", function(e) {
+          setMachinePoint(e.latlng.lat, e.latlng.lng);
+        });
+      }
+
+      setTimeout(function() {
+        machineMap.invalidateSize();
+      }, 200);
+    }
+
+    function setMachinePoint(lat, lng) {
+      selectedMachinePoint = { lat: lat, lng: lng };
+
+      if (!machineMarker) {
+        machineMarker = L.marker([lat, lng], {
+          draggable: true
+        }).addTo(machineMap);
+
+        machineMarker.on("dragend", function(e) {
+          const p = e.target.getLatLng();
+          setMachinePoint(p.lat, p.lng);
+        });
+      } else {
+        machineMarker.setLatLng([lat, lng]);
+      }
+
+      machineMap.setView([lat, lng], 16);
+
       document.getElementById("machineMapStatus").textContent =
-        "Location unavailable. Allow permission or select a point on the map.";
-    },
-    { enableHighAccuracy: true, timeout: 15000 }
-  );
-}
+        "Selected coordinates: " + lat.toFixed(6) + ", " + lng.toFixed(6);
+    }
 
-function confirmMachineLocation() {
-  if (!selectedMachinePoint) {
-    alert("Please select a point on the map first.");
-    return;
-  }
+    function useCurrentMachineLocation() {
+      if (!navigator.geolocation) {
+        alert("Your browser does not support location.");
+        return;
+      }
 
-  document.getElementById("location").value =
-    "GPS: " + selectedMachinePoint.lat.toFixed(6) + ", " +
-    selectedMachinePoint.lng.toFixed(6);
+      document.getElementById("machineMapStatus").textContent = "Finding your location...";
 
-  closeMachineMap();
-}
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          setMachinePoint(
+            position.coords.latitude,
+            position.coords.longitude
+          );
+        },
+        function() {
+          document.getElementById("machineMapStatus").textContent =
+            "Location unavailable. Allow permission or select a point on the map.";
+        },
+        { enableHighAccuracy: true, timeout: 15000 }
+      );
+    }
 
-function closeMachineMap() {
-  document.getElementById("machineMapModal").style.display = "none";
-}
-  
-function validateMobile() {
-  const mobile = document.getElementById("mobile");
-  const error = document.getElementById("mobileError");
-  const valid = /^[6-9][0-9]{9}$/.test(mobile.value);
+    function confirmMachineLocation() {
+      if (!selectedMachinePoint) {
+        alert("Please select a point on the map first.");
+        return;
+      }
 
-  if (mobile.value === "" || valid) {
-    error.style.display = "none";
-    mobile.setCustomValidity("");
-  } else {
-    error.style.display = "block";
-    mobile.setCustomValidity(
-      "Enter a valid 10-digit Indian mobile number."
-    );
-  }
+      document.getElementById("location").value =
+        "GPS: " + selectedMachinePoint.lat.toFixed(6) + ", " + selectedMachinePoint.lng.toFixed(6);
 
-  return valid;
-}
+      closeMachineMap();
+    }
 
-  
-function validateEmail() {
-  const email = document.getElementById("email");
-  const error = document.getElementById("emailError");
+    function closeMachineMap() {
+      document.getElementById("machineMapModal").style.display = "none";
+    }
 
-  const valid =
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
+    // Validation Functions
+    function validateMobile() {
+      const mobile = document.getElementById("mobile");
+      const error = document.getElementById("mobileError");
+      const valid = /^[6-9][0-9]{9}$/.test(mobile.value);
 
-  if (email.value === "" || valid) {
-    error.style.display = "none";
-    email.setCustomValidity("");
-  } else {
-    error.style.display = "block";
-    email.setCustomValidity("Please enter a valid email address.");
-  }
+      if (mobile.value === "" || valid) {
+        error.style.display = "none";
+        mobile.setCustomValidity("");
+      } else {
+        error.style.display = "block";
+        mobile.setCustomValidity("Enter a valid 10-digit Indian mobile number.");
+      }
 
-  return valid;
-}
+      return valid;
+    }
 
-</script>
+    function validateEmail() {
+      const email = document.getElementById("email");
+      const error = document.getElementById("emailError");
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
 
-  <script>
-  function setLanguage(language) {
-    document.querySelectorAll('[data-en][data-hi]').forEach(function (element) {
-      element.textContent =
-        language === 'hi'
-          ? element.getAttribute('data-hi')
-          : element.getAttribute('data-en');
-    });
+      if (email.value === "" || valid) {
+        error.style.display = "none";
+        email.setCustomValidity("");
+      } else {
+        error.style.display = "block";
+        email.setCustomValidity("Please enter a valid email address.");
+      }
 
-    document.querySelectorAll('[data-placeholder-en][data-placeholder-hi]')
-      .forEach(function (element) {
+      return valid;
+    }
+
+    // Language Toggle Switch
+    function setLanguage(language) {
+      document.querySelectorAll('[data-en][data-hi]').forEach(function (element) {
+        element.textContent =
+          language === 'hi'
+            ? element.getAttribute('data-hi')
+            : element.getAttribute('data-en');
+      });
+
+      document.querySelectorAll('[data-placeholder-en][data-placeholder-hi]').forEach(function (element) {
         element.placeholder =
           language === 'hi'
             ? element.getAttribute('data-placeholder-hi')
             : element.getAttribute('data-placeholder-en');
       });
 
-    document.documentElement.lang = language;
+      document.documentElement.lang = language;
 
+      try {
+        localStorage.setItem('jcbLanguage', language);
+      } catch (error) {}
+    }
+
+    let savedLanguage = 'en';
     try {
-      localStorage.setItem('jcbLanguage', language);
+      savedLanguage = localStorage.getItem('jcbLanguage') || 'en';
     } catch (error) {}
-  }
 
-  let savedLanguage = 'en';
-
-  try {
-    savedLanguage = localStorage.getItem('jcbLanguage') || 'en';
-  } catch (error) {}
-
-  setLanguage(savedLanguage);
-</script>
+    setLanguage(savedLanguage);
+  </script>
 </body>
 </html>
