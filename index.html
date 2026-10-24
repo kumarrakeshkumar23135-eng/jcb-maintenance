@@ -16,33 +16,33 @@
 
   <style>
     /* =========================================================
-       THEME VARIABLES (Light & Dark Mode Support)
+       STUNNING PROFESSIONAL THEME VARIABLES
        ========================================================= */
     :root[data-theme="dark"] {
-      --bg-primary: #0a1120;
-      --bg-secondary: #111b2e;
-      --card-bg: #16243b;
-      --text-primary: #ffffff;
+      --bg-primary: #0b0f19;
+      --bg-secondary: #111827;
+      --card-bg: #1e293b;
+      --text-primary: #f8fafc;
       --text-secondary: #94a3b8;
-      --accent-yellow: #ffcc00;
-      --border-color: rgba(255, 255, 255, 0.08);
-      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-      --card-hover-shadow: 0 20px 30px -10px rgba(255, 204, 0, 0.25);
+      --accent-yellow: #ffb700;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+      --card-hover-shadow: 0 20px 35px -10px rgba(255, 183, 0, 0.3);
     }
 
     :root[data-theme="light"] {
-      --bg-primary: #f8fafc;
-      --bg-secondary: #f1f5f9;
+      --bg-primary: #f4f6f9;
+      --bg-secondary: #ffffff;
       --card-bg: #ffffff;
       --text-primary: #0f172a;
       --text-secondary: #475569;
       --accent-yellow: #d97706;
-      --border-color: rgba(0, 0, 0, 0.08);
-      --card-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05);
-      --card-hover-shadow: 0 20px 25px -5px rgba(217, 119, 6, 0.2);
+      --border-color: rgba(0, 0, 0, 0.1);
+      --card-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.06);
+      --card-hover-shadow: 0 20px 30px -5px rgba(217, 119, 6, 0.25);
     }
 
-    /* Apply theme variables to core elements */
+    /* Core Element Theme Application */
     body {
       background-color: var(--bg-primary);
       color: var(--text-primary);
@@ -52,23 +52,45 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
+    /* Section Headings Fix for Day/Dark Brightness */
+    section, .services, .stats, .dark {
+      background-color: var(--bg-primary) !important;
+      color: var(--text-primary) !important;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .section-head h2, .section-head p {
+      color: var(--text-primary) !important;
+    }
+
+    .section-head p {
+      color: var(--text-secondary) !important;
+    }
+
+    /* Cards, Stats, and Contact Boxes */
     .card, .contactbox, .stat {
       background-color: var(--card-bg) !important;
       color: var(--text-primary) !important;
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border-color) !important;
       box-shadow: var(--card-shadow);
-      /* Smooth upward hover effect */
       transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
                   box-shadow 0.3s ease, 
                   border-color 0.3s ease,
                   background-color 0.3s ease;
     }
 
-    /* Hover Upward Lift Effect on Selectable Boxes/Cards */
+    .card p, .card h3, .stat span, .stat b {
+      color: var(--text-primary) !important;
+    }
+    .card p, .stat span {
+      color: var(--text-secondary) !important;
+    }
+
+    /* Upward Hover Lift Effect on Selectable Boxes/Cards */
     .card:hover, .stat:hover {
       transform: translateY(-8px);
       box-shadow: var(--card-hover-shadow);
-      border-color: var(--accent-yellow);
+      border-color: var(--accent-yellow) !important;
     }
 
     @keyframes blink247 {
@@ -80,7 +102,7 @@
       animation: blink247 1.5s infinite;
     }
 
-    /* Language & Theme Switch Controls */
+    /* Language & Theme Switch Controls Bar */
     .language-switch {
       background: var(--bg-secondary);
       max-width: 100%;
@@ -89,28 +111,34 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       border-bottom: 1px solid var(--border-color);
+      transition: background-color 0.3s ease;
     }
 
     .language-switch button, .theme-toggle-btn {
       min-height: 40px;
-      min-width: 76px;
+      min-width: 80px;
       border-radius: 8px;
       font-weight: 700;
       font-size: 14px;
-      transition: background 0.2s ease, transform 0.2s ease;
+      transition: all 0.2s ease;
       cursor: pointer;
       border: 1px solid var(--border-color);
       background: var(--card-bg);
       color: var(--text-primary);
-      padding: 0 12px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
     .language-switch button:hover, .theme-toggle-btn:hover {
       background: var(--accent-yellow);
       color: #000;
       transform: translateY(-2px);
+      border-color: var(--accent-yellow);
     }
 
     /* Floating WhatsApp Button */
@@ -190,7 +218,7 @@
       cursor: pointer;
     }
 
-    /* Tablet and Android mobile screens */
+    /* Responsive Mobile Screens */
     @media screen and (max-width: 768px) {
       .topbar .container {
         flex-wrap: wrap;
@@ -252,16 +280,6 @@
         font-size: 14px;
       }
 
-      .availability-badge,
-      .eyebrow {
-        max-width: 100%;
-        flex-wrap: wrap;
-      }
-
-      .container {
-        max-width: 100%;
-      }
-
       input,
       select,
       textarea {
@@ -270,34 +288,6 @@
         background-color: var(--card-bg);
         color: var(--text-primary);
         border: 1px solid var(--border-color);
-      }
-
-      button,
-      .btn {
-        touch-action: manipulation;
-      }
-    }
-
-    /* Extra-small Android screens */
-    @media screen and (max-width: 400px) {
-      .language-switch {
-        padding: 8px 12px;
-      }
-
-      .nav .container.navin {
-        padding: 10px 12px;
-      }
-
-      .links {
-        gap: 8px 12px;
-      }
-
-      .hero-content {
-        padding: 24px 12px;
-      }
-
-      .hero-content h1 {
-        font-size: 30px;
       }
     }
   </style>
@@ -695,7 +685,6 @@
       } else {
         btn.innerHTML = '☀️ <span id="themeToggleText" data-en="Day Brightness" data-hi="दिन की चमक">Day Brightness</span>';
       }
-      // Re-apply language translation to the newly inserted button span
       const currentLang = document.documentElement.lang || 'en';
       setLanguage(currentLang);
     }
