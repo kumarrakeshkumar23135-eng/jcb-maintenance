@@ -199,25 +199,31 @@
       align-items: center;
     }
 
-    /* Enhanced Logo Box */
+    /* Circular RK Logo Badge */
     .logo-box {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       text-decoration: none;
       color: var(--text-primary);
       font-weight: bold;
       font-size: 18px;
     }
 
-    .logo-badge {
-      background: var(--accent-yellow);
-      color: #000;
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 12px rgba(255, 183, 0, 0.3);
+    .circular-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #070b14, #131d33);
+      border: 2px solid #00d2ff;
+      box-shadow: 0 0 12px rgba(0, 210, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00d2ff;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 0.5px;
     }
 
     .links {
@@ -455,7 +461,7 @@
       border-radius: 8px;
     }
 
-    /* App Modal Launcher */
+    /* App Modal & Map Launcher */
     #appsModal, #machineMapModal {
       display: none;
       position: fixed;
@@ -570,7 +576,7 @@
   <nav class="nav">
     <div class="container navin">
       <a class="logo-box" href="#">
-        <span class="logo-badge">JM</span>
+        <div class="circular-logo">RK</div>
         <span>JCB MAINTENANCE</span>
       </a>
       <div class="links">
@@ -581,7 +587,6 @@
         <a href="#request" data-en="Service Request" data-hi="सेवा अनुरोध">Service Request</a>
         <a href="#faq" data-en="FAQ" data-hi="सामान्य प्रश्न">FAQ</a>
       </div>
-      <a class="btn-yellow" href="tel:8052587317" data-en="Call Manager" data-hi="मैनेजर को कॉल करें">Call Manager</a>
     </div>
   </nav>
 
@@ -790,7 +795,7 @@
     <div class="container">
       <div class="section-head">
         <h2 data-en="Built for heavy-duty work." data-hi="भारी कार्यों के लिए निर्मित।">Built for heavy-duty work.</h2>
-        <p data-en="Professional visual presentation inspired by modern construction-equipment service websites." data-hi="आधुनिक निर्माण-उपकरण सेवा वेबसाइटों से प्रेरित कार्य प्रस्तुति।">Professional visual presentation inspired by modern construction-equipment service websites.</p>
+        <p data-en="Professional visual presentation inspired by modern construction-equipment service websites." data-hi="आधुनिक निर्माण-उपकरण सेवा वेबसाइटों से प्रेरित पेशेवर कार्य प्रस्तुति।">Professional visual presentation inspired by modern construction-equipment service websites.</p>
       </div>
       <div class="gallery">
         <img src="https://placehold.co/600x400/131d33/ffb700?text=JCB+Machine+at+Work" alt="JCB machine at work">
@@ -811,19 +816,27 @@
       <div class="grid3">
         <div class="card">
           <h3 data-en="How fast can the team reach?" data-hi="टीम कितनी जल्दी पहुँच सकती है?">How fast can the team reach?</h3>
-          <p data-en="Our service team responds promptly depending on site distance within Varanasi and nearby areas." data-hi="हमारी सेवा टीम वाराणसी और आसपास के क्षेत्रों में दूरी के आधार पर तुरंत प्रतिक्रिया देती है।">Our service team responds promptly depending on site distance within Varanasi and nearby areas.</p>
+          <p data-en="Our service team responds promptly depending on site distance within Varanasi and surrounding regional areas." data-hi="हमारी सेवा टीम वाराणसी और आसपास के क्षेत्रों में साइट की दूरी के आधार पर तुरंत प्रतिक्रिया देती है।">Our service team responds promptly depending on site distance within Varanasi and surrounding regional areas.</p>
         </div>
         <div class="card">
-          <h3 data-en="Can I call directly?" data-hi="क्या मैं सीधे कॉल कर सकता हूँ?">Can I call directly?</h3>
-          <p data-en="Yes, you can directly call manager Munshi Ram at 8052587317 for urgent breakdowns." data-hi="हां, आप आपातकालीन खराबी के लिए प्रबंधक मुंशी राम को 8052587317 पर सीधे कॉल कर सकते हैं।">Yes, you can directly call manager Munshi Ram at 8052587317 for urgent breakdowns.</p>
+          <h3 data-en="How do I upload a problem photo?" data-hi="मैं समस्या की फोटो कैसे अपलोड करूं?">How do I upload a problem photo?</h3>
+          <p data-en="Use the service request form above to attach an image file of the machine issue directly." data-hi="मशीन की समस्या की तस्वीर सीधे जोड़ने के लिए ऊपर दिए गए सेवा अनुरोध फॉर्म का उपयोग करें।">Use the service request form above to attach an image file of the machine issue directly.</p>
         </div>
         <div class="card">
-          <h3 data-en="How do photos help?" data-hi="फोटो कैसे मदद करते हैं?">How do photos help?</h3>
-          <p data-en="Uploading photo evidence helps technicians identify specific parts and tools needed before arriving." data-hi="फोटो अपलोड करने से तकनीशियनों को पहुंचने से पहले आवश्यक भागों और उपकरणों की पहचान करने में मदद मिलती है।">Uploading photo evidence helps technicians identify specific parts and tools needed before arriving.</p>
+          <h3 data-en="Who manages the service operations?" data-hi="सेवा संचालन का प्रबंधन कौन करता है?">Who manages the service operations?</h3>
+          <p data-en="Manager Munshi Ram oversees all field maintenance requests and breakdown support." data-hi="प्रबंधक मुंशी राम सभी फील्ड रखरखाव अनुरोधों और ब्रेकडाउन सहायता की देखरेख करते हैं।">Manager Munshi Ram oversees all field maintenance requests and breakdown support.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- FOOTER WITH RK LOGO & COPYRIGHT -->
+  <footer style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); padding: 40px 0; text-align: center;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+      <div class="circular-logo">RK</div>
+      <p style="margin: 0; color: var(--text-secondary); font-size: 14px;">© 2026 JCB Maintenance Services. All Rights Reserved.</p>
+    </div>
+  </footer>
 
   <!-- APPS LAUNCHER MODAL -->
   <div id="appsModal">
@@ -845,20 +858,21 @@
     </div>
   </div>
 
-  <!-- MAP MODAL -->
+  <!-- LEAFLET MAP MODAL -->
   <div id="machineMapModal">
     <div class="machine-map-panel">
       <h3 style="margin-top:0;" data-en="Select Worksite Location" data-hi="कार्यस्थल का स्थान चुनें">Select Worksite Location</h3>
-      <div id="machineMap">MAP PLACEHOLDER</div>
-      <div class="machine-map-actions">
-        <button type="button" class="btn-yellow" onclick="closeMachineMap()" data-en="Confirm Location" data-hi="स्थान की पुष्टि करें">Confirm Location</button>
-        <button type="button" style="background:var(--card-bg); color:var(--text-primary); border:1px solid var(--border-color); border-radius:8px;" onclick="closeMachineMap()" data-en="Cancel" data-hi="रद्द करें">Cancel</button>
+      <div id="machineMap"></div>
+      <div style="display:flex; gap:10px; justify-content:flex-end;">
+        <button type="button" onclick="closeMachineMap()" class="btn-yellow" style="background:var(--card-bg); color:var(--text-primary); border:1px solid var(--border-color);" data-en="Cancel" data-hi="रद्द करें">Cancel</button>
+        <button type="button" onclick="confirmLocation()" class="btn-yellow" data-en="Confirm Location" data-hi="स्थान की पुष्टि करें">Confirm Location</button>
       </div>
     </div>
   </div>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // Theme Switcher
+    // Theme Switch
     function toggleTheme() {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -866,7 +880,7 @@
       document.getElementById('themeToggleText').innerText = newTheme === 'dark' ? 'Day Brightness' : 'Night Mode';
     }
 
-    // Language Switcher
+    // Language Switch
     function setLanguage(lang) {
       document.querySelectorAll('[data-en]').forEach(el => {
         el.innerText = el.getAttribute(`data-${lang}`);
@@ -914,26 +928,47 @@
 
     typingEffect();
 
-    // App Modal Controls
+    // Modal controls
     function openAppsModal() { document.getElementById('appsModal').style.display = 'flex'; }
     function closeAppsModal() { document.getElementById('appsModal').style.display = 'none'; }
 
-    // Map Modal Controls
-    function openMachineMap() { document.getElementById('machineMapModal').style.display = 'flex'; }
-    function closeMachineMap() { document.getElementById('machineMapModal').style.display = 'none'; }
+    // Map Modal logic
+    let map, marker;
+    let selectedAddress = "";
 
-    // Form Validations
-    function validateMobile() {
-      const input = document.getElementById('mobile');
-      const err = document.getElementById('mobileError');
-      if (input.validity.patternMismatch) {
-        err.style.display = 'block';
-      } else {
-        err.style.display = 'none';
-      }
+    function openMachineMap() {
+      document.getElementById('machineMapModal').style.display = 'flex';
+      setTimeout(() => {
+        if (!map) {
+          map = L.map('machineMap').setView([25.3176, 82.9739], 13); // Varanasi default
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+          }).addTo(map);
+
+          marker = L.marker([25.3176, 82.9739], { draggable: true }).addTo(map);
+          
+          marker.on('dragend', function(e) {
+            const pos = marker.getLatLng();
+            selectedAddress = `Lat: ${pos.lat.toFixed(4)}, Lng: ${pos.lng.toFixed(4)} (Varanasi Region)`;
+          });
+        }
+        map.invalidateSize();
+      }, 200);
     }
 
-    // Back to top
+    function closeMachineMap() {
+      document.getElementById('machineMapModal').style.display = 'none';
+    }
+
+    function confirmLocation() {
+      if (!selectedAddress) {
+        selectedAddress = "Varanasi Worksite Area (Pinned)";
+      }
+      document.getElementById('location').value = selectedAddress;
+      closeMachineMap();
+    }
+
+    // Back to top scroll
     window.onscroll = function() {
       const btn = document.getElementById('backToTopBtn');
       if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
@@ -943,6 +978,18 @@
       }
     };
     function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+    // Mobile Validation
+    function validateMobile() {
+      const mobileInput = document.getElementById('mobile');
+      const errorSmall = document.getElementById('mobileError');
+      const pattern = /^[6-9][0-9]{9}$/;
+      if (pattern.test(mobileInput.value)) {
+        errorSmall.style.display = 'none';
+      } else {
+        errorSmall.style.display = 'block';
+      }
+    }
   </script>
 </body>
 </html>
