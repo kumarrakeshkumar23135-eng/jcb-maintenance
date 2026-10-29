@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   
-  <meta name="description" content="JCB Maintenance Services provides professional JCB machine maintenance, breakdown assistance, repair support, and field service. Customers can submit service requests with their name, phone number, machine problem description, location, and photos. Contact manager Munshi Ram for JCB maintenance support.">
+  <meta name="description" content="JCB Maintenance Services provides professional JCB machine maintenance, breakdown assistance, repair support, and field service.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
@@ -42,7 +42,7 @@
       --card-hover-shadow: 0 20px 35px -5px rgba(217, 119, 6, 0.25);
     }
 
-    /* Core Reset & Android Mobile Readiness */
+    /* Core Reset */
     *, *::before, *::after {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
@@ -132,7 +132,6 @@
       color: var(--text-secondary) !important;
     }
 
-    /* Touch-friendly Upward Hover Lift for Desktop & Mobile Taps */
     @media (hover: hover) {
       .card:hover, .stat:hover {
         transform: translateY(-8px);
@@ -155,14 +154,14 @@
       animation: blink247 1.5s infinite;
     }
 
-    /* Top Language & Theme Switch Controls Bar */
+    /* Top Controls Bar */
     .language-switch {
       background: var(--bg-secondary);
       max-width: 100%;
       box-sizing: border-box;
       padding: 10px 4%;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: center;
       gap: 10px;
       border-bottom: 1px solid var(--border-color);
@@ -170,9 +169,8 @@
       flex-wrap: wrap;
     }
 
-    .language-switch button, .theme-toggle-btn {
-      min-height: 44px;
-      min-width: 80px;
+    .language-switch button, .theme-toggle-btn, .app-launcher-btn {
+      min-height: 40px;
       border-radius: 8px;
       font-weight: 700;
       font-size: 14px;
@@ -189,19 +187,19 @@
       touch-action: manipulation;
     }
 
-    .language-switch button:hover, .theme-toggle-btn:hover {
+    .language-switch button:hover, .theme-toggle-btn:hover, .app-launcher-btn:hover {
       background: var(--accent-yellow);
       color: #000;
       border-color: var(--accent-yellow);
     }
 
-    /* Form Inputs Optimization for Mobile */
+    /* Form Inputs Optimization */
     input, select, textarea {
       width: 100%;
       min-height: 48px;
       padding: 12px 14px;
       border-radius: 8px;
-      font-size: 16px; /* Prevents auto-zoom on iOS & Android WebViews */
+      font-size: 16px;
       background-color: var(--card-bg);
       color: var(--text-primary);
       border: 1px solid var(--border-color);
@@ -213,7 +211,7 @@
       resize: vertical;
     }
 
-    /* Floating WhatsApp Button & Back to Top Button */
+    /* Floating WhatsApp Button & Back to Top */
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
@@ -231,10 +229,6 @@
       text-decoration: none;
       font-size: 14px;
       transition: transform 0.2s ease, background-color 0.2s ease;
-    }
-
-    .whatsapp-float:active {
-      transform: scale(0.96);
     }
 
     .back-to-top {
@@ -257,17 +251,11 @@
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
-      touch-action: manipulation;
     }
 
     .back-to-top.show {
       opacity: 1;
       visibility: visible;
-    }
-
-    .back-to-top:active {
-      background-color: var(--accent-yellow);
-      color: #000;
     }
 
     img {
@@ -276,131 +264,137 @@
       border-radius: 8px;
     }
 
-    /* Map Modal Styles */
-    #machineMapModal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      background: rgba(0,0,0,0.75);
+    /* =========================================================
+       NEW FEATURE 1: 3D MOVING CUBE SECTION
+       ========================================================= */
+    .cube-section {
+      padding: 50px 20px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 12px;
+      background: var(--bg-secondary);
+      border-y: 1px solid var(--border-color);
     }
-    .machine-map-panel {
-      background: var(--card-bg);
-      color: var(--text-primary);
+
+    .cube-container {
+      width: 200px;
+      height: 200px;
+      perspective: 1000px;
+      margin: 40px auto;
+    }
+
+    .cube {
       width: 100%;
-      max-width: 700px;
-      padding: 16px;
-      border-radius: 14px;
-      box-sizing: border-box;
-      border: 1px solid var(--border-color);
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotateCube 12s infinite linear;
     }
-    #machineMap {
-      height: 300px;
-      width: 100%;
-      margin: 12px 0;
-      border-radius: 8px;
-    }
-    .machine-map-actions {
+
+    .cube-face {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(19, 29, 51, 0.9);
+      border: 2px solid var(--accent-yellow);
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--accent-yellow);
+      box-shadow: 0 0 20px rgba(255, 183, 0, 0.2);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      padding: 10px;
     }
-    .machine-map-actions button {
-      flex: 1 1 120px;
-      min-height: 46px;
-      cursor: pointer;
+
+    .cube-face.front  { transform: rotateY(  0deg) translateZ(100px); }
+    .cube-face.back   { transform: rotateY(180deg) translateZ(100px); }
+    .cube-face.right  { transform: rotateY( 90deg) translateZ(100px); }
+    .cube-face.left   { transform: rotateY(-90deg) translateZ(100px); }
+    .cube-face.top    { transform: rotateX( 90deg) translateZ(100px); }
+    .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+    @keyframes rotateCube {
+      0% { transform: rotateX(0deg) rotateY(0deg); }
+      100% { transform: rotateX(360deg) rotateY(360deg); }
     }
 
     /* =========================================================
-       ANDROID MOBILE & TABLET RESPONSIVE OVERRIDES
+       NEW FEATURE 2: APPS LAUNCHER MODAL & APP GRID
        ========================================================= */
+    #appsModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .apps-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      width: 100%;
+      max-width: 600px;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      position: relative;
+    }
+
+    .apps-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .app-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .app-card:hover {
+      border-color: var(--accent-yellow);
+      transform: translateY(-4px);
+    }
+
+    .app-card .app-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .app-content-display {
+      margin-top: 20px;
+      padding: 16px;
+      background: var(--bg-primary);
+      border-radius: 8px;
+      border: 1px dashed var(--accent-yellow);
+      display: none;
+    }
+
     @media screen and (max-width: 768px) {
-      .language-switch {
-        justify-content: space-between;
-        padding: 8px 12px;
-      }
-
-      .topbar .container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-        padding: 10px 14px;
-        font-size: 13px;
-      }
-
-      .nav .container.navin {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-        padding: 12px 14px;
-      }
-
-      .links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 14px;
-        width: 100%;
-        justify-content: center;
-      }
-
-      .links a {
-        padding: 6px 10px;
-        font-size: 14px;
-        background: rgba(255,255,255,0.04);
-        border-radius: 6px;
-      }
-
-      .nav .btn {
-        width: 100%;
-        min-height: 48px;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .hero-content {
-        padding: 28px 14px;
-        text-align: center;
-      }
-
-      .hero-content h1 {
-        font-size: clamp(26px, 7vw, 38px);
-        line-height: 1.2;
-      }
-
-      .actions a {
-        width: 100%;
-        text-align: center;
-        box-sizing: border-box;
-        min-height: 48px;
-        display: inline-flex !important;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .grid3, .statgrid, .formgrid {
-        display: grid;
-        grid-template-columns: 1fr !important;
-        gap: 14px;
-      }
-
-      .whatsapp-float {
-        bottom: 16px;
-        right: 14px;
-        padding: 10px 16px;
-        font-size: 13px;
-      }
-
-      .back-to-top {
-        bottom: 16px;
-        left: 14px;
-        width: 42px;
-        height: 42px;
-      }
+      .apps-grid { grid-template-columns: 1fr; }
     }
   </style>
 
@@ -417,412 +411,191 @@
   <!-- Back to Top Button -->
   <button type="button" id="backToTopBtn" class="back-to-top" onclick="scrollToTop()" title="Back to top">↑</button>
 
-  <!-- TOP BAR WITH DAY BRIGHTNESS / DARK MODE TOGGLE & LANGUAGE SWITCH -->
+  <!-- TOP BAR WITH THEME, LANGUAGE & APP LAUNCHER BUTTON -->
   <div class="language-switch">
     <button type="button" id="themeToggleBtn" onclick="toggleTheme()" class="theme-toggle-btn">
       ☀️ <span id="themeToggleText" data-en="Day Brightness" data-hi="दिन की चमक">Day Brightness</span>
     </button>
-    <div>
+    
+    <div style="display: flex; gap: 8px;">
+      <!-- Corner Apps Button -->
+      <button type="button" class="app-launcher-btn" onclick="openAppsModal()">
+        :: <span data-en="Apps" data-hi="ऐप्स">App</span>
+      </button>
+
       <button type="button" onclick="setLanguage('en')">English</button>
       <button type="button" onclick="setLanguage('hi')">हिन्दी</button>
     </div>
   </div>
 
   <div class="topbar">
-    <div class="container">
+    <div class="container" style="display: flex; justify-content: space-between; padding: 10px 4%;">
       <span data-en="Professional Heavy Equipment Maintenance" data-hi="पेशेवर भारी उपकरण रखरखाव">Professional Heavy Equipment Maintenance</span>
       <span><span data-en="Manager: Munshi Ram" data-hi="प्रबंधक: मुंशी राम">Manager: Munshi Ram</span> · <a href="tel:8052587317" style="color:var(--accent-yellow);">8052587317</a></span>
     </div>
   </div>
 
-  <nav class="nav">
-    <div class="container navin">
-      <a class="logo" href="#"><span class="logo-mark">JM</span><span>JCB MAINTENANCE<small data-en="FIELD SERVICE & SUPPORT" data-hi="फील्ड सेवा और सहायता">FIELD SERVICE & SUPPORT</small></span></a>
-      <div class="links">
-        <a href="#services" data-en="Services" data-hi="सेवाएं">Services</a>
-        <a href="#process" data-en="How It Works" data-hi="यह कैसे काम करता है">How It Works</a>
-        <a href="#coverage" data-en="Service Area" data-hi="सेवा क्षेत्र">Service Area</a>
-        <a href="#gallery" data-en="Work" data-hi="हमारा कार्य">Work</a>
-        <a href="#request" data-en="Service Request" data-hi="सेवा अनुरोध">Service Request</a>
-        <a href="#faq" data-en="FAQ" data-hi="सामान्य प्रश्न">FAQ</a>
-        <a href="#contact" data-en="Contact" data-hi="संपर्क करें">Contact</a>
-      </div>
-      <a class="btn btn-yellow" href="tel:8052587317" data-en="Call Manager" data-hi="मैनेजर को कॉल करें">Call Manager</a>
+  <nav class="nav" style="padding: 10px 4%; border-bottom: 1px solid var(--border-color);">
+    <div class="container navin" style="display: flex; justify-content: space-between; align-items: center;">
+      <a class="logo" href="#" style="text-decoration:none; color:var(--text-primary); font-weight:bold; font-size: 20px;"><span style="color:var(--accent-yellow);">JM</span> JCB MAINTENANCE</a>
+      <a class="btn btn-yellow" href="tel:8052587317" style="background:var(--accent-yellow); color:#000; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:bold;" data-en="Call Manager" data-hi="मैनेजर को कॉल करें">Call Manager</a>
     </div>
   </nav>
 
   <header class="hero">
-    <div class="container">
+    <div class="container" style="text-align: center; padding: 50px 20px;">
       <div class="hero-content">
         <div class="availability-badge" style="display:inline-flex;align-items:center;gap:8px;background:#292012;border:1px solid #8a5b00;border-radius:25px;padding:8px 14px;margin-bottom:16px;color:#ffa500;font-size:13px;">
           <span style="color:#22c55e;">●</span> <span data-en="Available 24/7 for JCB Services" data-hi="JCB सेवाओं के लिए 24/7 उपलब्ध">Available 24/7 for JCB Services</span>
         </div>
 
-        <span class="eyebrow" data-en="Machine down? Get help." data-hi="मशीन खराब है? सहायता लें।">Machine down? Get help.</span>
-
         <h1 data-en="Keep your JCB working. Keep your project moving." data-hi="अपनी JCB चालू रखें। अपना काम आगे बढ़ाते रहें।">Keep your JCB working. Keep your project moving.</h1>
 
-        <p data-en="Professional field maintenance and breakdown support for JCB construction equipment, with a simple service-request system for customers." data-hi="JCB मशीनों की मरम्मत और खराबी के समय सहायता पाएँ। ग्राहकों के लिए सेवा अनुरोध भेजने की आसान सुविधा।">Professional field maintenance and breakdown support for JCB construction equipment, with a simple service-request system for customers.</p>
+        <p data-en="Professional field maintenance and breakdown support for JCB construction equipment." data-hi="JCB मशीनों की मरम्मत और खराबी के समय सहायता पाएँ।">Professional field maintenance and breakdown support for JCB construction equipment.</p>
 
-        <div class="actions">
-          <a href="#request" style="background:#ffcc00;color:#000;padding:14px 20px;border-radius:12px;text-decoration:none;font-weight:700;" data-en="Request Maintenance" data-hi="मरम्मत के लिए अनुरोध करें">Request Maintenance</a>
+        <div class="actions" style="margin-top: 20px;">
+          <a href="#request" style="background:var(--accent-yellow);color:#000;padding:14px 20px;border-radius:12px;text-decoration:none;font-weight:700;" data-en="Request Maintenance" data-hi="मरम्मत के लिए अनुरोध करें">Request Maintenance</a>
         </div>
       </div>
     </div>
   </header>
 
-  <div class="stats">
-    <div class="container">
-      <div class="statgrid">
-        <div class="stat"><b data-en="Breakdown Support" data-hi="ब्रेकडाउन सहायता">Breakdown Support</b><span data-en="Share the machine problem and location." data-hi="मशीन की समस्या और स्थान साझा करें।">Share the machine problem and location.</span></div>
-        <div class="stat"><b data-en="Photo-Based Diagnosis" data-hi="फोटो आधारित जांच">Photo-Based Diagnosis</b><span data-en="Upload photos of the issue for quicker review." data-hi="त्वरित समीक्षा के लिए समस्या की तस्वीरें अपलोड करें।">Upload photos of the issue for quicker review.</span></div>
-        <div class="stat"><b data-en="Customer Records" data-hi="ग्राहक रिकॉर्ड">Customer Records</b><span data-en="Service requests are collected in the Netlify dashboard." data-hi="सेवा अनुरोध सीधे डैशबोर्ड में जमा होते हैं।">Service requests are collected in the Netlify dashboard.</span></div>
-      </div>
+  <!-- 3D MOVING CUBE SECTION -->
+  <section class="cube-section">
+    <div class="section-head" style="text-align: center;">
+      <h2 data-en="Interactive JCB Service Hub" data-hi="इंटरएक्टिव JCB सेवा हब">Interactive JCB Service Hub</h2>
+      <p data-en="3D Overview of Core Services" data-hi="मुख्य सेवाओं का 3D अवलोकन">3D Overview of Core Services</p>
     </div>
-  </div>
 
-  <section id="services" class="services">
-    <div class="container">
-      <div class="section-head">
-        <h2 data-en="Maintenance that focuses on uptime." data-hi="समय की बचत पर केंद्रित रखरखाव।">Maintenance that focuses on uptime.</h2>
-        <p data-en="Designed for operators, contractors and machine owners who need a clear way to request service and explain a machine problem." data-hi="ऑपरेटरों, ठेकेदारों और मशीन मालिकों के लिए डिज़ाइन किया गया, जिन्हें सेवा का अनुरोध करने का स्पष्ट तरीका चाहिए।">Designed for operators, contractors and machine owners who need a clear way to request service and explain a machine problem.</p>
-      </div>
-      <div class="grid3">
-        <div class="card">
-          <div class="icon">🔧</div>
-          <h3 data-en="Breakdown Inspection" data-hi="खराबी का निरीक्षण">Breakdown Inspection</h3>
-          <p data-en="Capture the machine symptoms, location and photos so the service team can understand the problem before visiting." data-hi="मशीन की खराबी, स्थान और फोटो भेजें ताकि टीम आने से पहले समस्या समझ सके।">Capture the machine symptoms, location and photos so the service team can understand the problem before visiting.</p>
-        </div>
-        <div class="card">
-          <div class="icon">⚙️</div>
-          <h3 data-en="Routine Maintenance" data-hi="नियमित रखरखाव">Routine Maintenance</h3>
-          <p data-en="Plan maintenance work and keep a record of machine details and service requirements." data-hi="रखरखाव कार्य की योजना बनाएं और मशीन के विवरण का रिकॉर्ड रखें।">Plan maintenance work and keep a record of machine details and service requirements.</p>
-        </div>
-        <div class="card">
-          <div class="icon">🛠️</div>
-          <h3 data-en="Field Service" data-hi="ऑन-साइट फ़ील्ड सेवा">Field Service</h3>
-          <p data-en="On-site support for construction equipment issues, subject to service-area availability." data-hi="निर्माण उपकरणों की समस्याओं के लिए कार्यस्थल पर सहायता।">On-site support for construction equipment issues, subject to service-area availability.</p>
-        </div>
+    <div class="cube-container">
+      <div class="cube">
+        <div class="cube-face front">JCB Support</div>
+        <div class="cube-face back">Services</div>
+        <div class="cube-face right">Worksite</div>
+        <div class="cube-face left">Contact</div>
+        <div class="cube-face top">Fast Field</div>
+        <div class="cube-face bottom">24/7 Service</div>
       </div>
     </div>
   </section>
 
-  <section id="process">
-    <div class="container">
-      <div class="section-head">
-        <h2 data-en="Simple service process" data-hi="सरल सेवा प्रक्रिया">Simple service process</h2>
-        <p data-en="Three steps from problem to service coordination." data-hi="समस्या से लेकर सेवा प्राप्त करने तक केवल तीन आसान चरण।">Three steps from problem to service coordination.</p>
-      </div>
-      <div class="grid3">
-        <div class="card">
-          <div class="icon">01</div>
-          <h3 data-en="Tell us the problem" data-hi="हमें समस्या बताएं">Tell us the problem</h3>
-          <p data-en="Enter your name, mobile number, machine information and what went wrong." data-hi="अपना नाम, मोबाइल नंबर, मशीन की जानकारी और क्या खराबी है दर्ज करें।">Enter your name, mobile number, machine information and what went wrong.</p>
-        </div>
-        <div class="card">
-          <div class="icon">02</div>
-          <h3 data-en="Share location & photos" data-hi="स्थान और फोटो शेयर करें">Share location & photos</h3>
-          <p data-en="Provide the worksite location and upload a clear photo of the problem area." data-hi="कार्यस्थल का स्थान चुनें और प्रभावित हिस्से की स्पष्ट फोटो अपलोड करें।">Provide the worksite location and upload a clear photo of the problem area.</p>
-        </div>
-        <div class="card">
-          <div class="icon">03</div>
-          <h3 data-en="We contact you" data-hi="हम आपसे संपर्क करेंगे">We contact you</h3>
-          <p data-en="Your request is saved and the manager can review the details and contact you." data-hi="आपका अनुरोध सुरक्षित है, मैनेजर विवरण की समीक्षा करके आपसे संपर्क करेंगे।">Your request is saved and the manager can review the details and contact you.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Service Area Coverage Section -->
-  <section id="coverage" class="services">
-    <div class="container">
-      <div class="section-head">
-        <h2 data-en="Service Area & Coverage" data-hi="सेवा क्षेत्र और कवरेज">Service Area & Coverage</h2>
-        <p data-en="We provide rapid on-site maintenance across Varanasi and nearby regional construction sites." data-hi="हम वाराणसी और आसपास के निर्माण स्थलों पर त्वरित ऑन-साइट रखरखाव प्रदान करते हैं।">We provide rapid on-site maintenance across Varanasi and nearby regional construction sites.</p>
-      </div>
-      <div class="grid3">
-        <div class="card">
-          <div class="icon">📍</div>
-          <h3 data-en="Varanasi & City Region" data-hi="वाराणसी और शहरी क्षेत्र">Varanasi & City Region</h3>
-          <p data-en="Quick response team available for urban construction projects and road works." data-hi="शहरी निर्माण परियोजनाओं और सड़क कार्यों के लिए त्वरित प्रतिक्रिया टीम उपलब्ध है।">Quick response team available for urban construction projects and road works.</p>
-        </div>
-        <div class="card">
-          <div class="icon">🚧</div>
-          <h3 data-en="Nearby Highway Sites" data-hi="आसपास के राजमार्ग स्थल">Nearby Highway Sites</h3>
-          <p data-en="On-site breakdown support for highway construction and earthmoving equipment." data-hi="राजमार्ग निर्माण और मिट्टी हटाने वाले उपकरणों के लिए ऑन-साइट ब्रेकडाउन सहायता।">On-site breakdown support for highway construction and earthmoving equipment.</p>
-        </div>
-        <div class="card">
-          <div class="icon">🚚</div>
-          <h3 data-en="Emergency Field Dispatch" data-hi="आपातकालीन फील्ड प्रेषण">Emergency Field Dispatch</h3>
-          <p data-en="Call manager Munshi Ram directly for urgent machinery breakdown assistance." data-hi="अत्यावश्यक मशीनरी खराबी सहायता के लिए प्रबंधक मुंशी राम को सीधे कॉल करें।">Call manager Munshi Ram directly for urgent machinery breakdown assistance.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="dark" id="gallery">
-    <div class="container">
-      <div class="section-head">
-        <h2 data-en="Built for heavy-duty work." data-hi="भारी कार्यों के लिए निर्मित।">Built for heavy-duty work.</h2>
-        <p data-en="Professional visual presentation inspired by modern construction-equipment service websites." data-hi="आधुनिक निर्माण-उपकरण सेवा वेबसाइटों से प्रेरित पेशेवर कार्य प्रस्तुति।">Professional visual presentation inspired by modern construction-equipment service websites.</p>
-      </div>
-      <div class="gallery">
-        <img src="jcb-machine.jpg.img" alt="JCB machine at work">
-        <img src="jcb-repair.jpg.img" alt="JCB repair service">
-        <img src="jcb-repairing.jpg.img" alt="JCB maintenance">
-        <img src="jcb-worksite.jpg.img" alt="JCB worksite">
-      </div>
-    </div>
-  </section>
-
-  <section id="request">
-    <div class="container">
-      <div class="section-head">
+  <!-- REQUEST FORM SECTION -->
+  <section id="request" style="padding: 40px 20px;">
+    <div class="container" style="max-width: 800px; margin: 0 auto;">
+      <div class="section-head" style="text-align: center;">
         <h2 data-en="Request JCB maintenance" data-hi="JCB मरम्मत का अनुरोध करें">Request JCB maintenance</h2>
-        <p data-en="Submit your customer and machine details to send a service request directly." data-hi="सेवा अनुरोध सीधे भेजने के लिए अपने ग्राहक और मशीन के विवरण जमा करें।">Submit your customer and machine details to send a service request directly.</p>
       </div>
-      <div class="form-wrap">
-        <div class="contactbox">
-          <h3 data-en="Manager" data-hi="प्रबंधक">Manager</h3>
-          <div class="contactline"><strong>Munshi Ram</strong><br><span data-en="Service Manager" data-hi="सेवा प्रबंधक">Service Manager</span></div>
-          <div class="contactline"><strong>Adarsh</strong><br><span data-en="Developer" data-hi="डेवलपर">Developer</span></div>
-          <div class="contactline">📞 <a href="tel:8052587317" style="color:var(--accent-yellow);">8052587317</a></div>
-          <div class="contactline">✉️ <a href="mailto:kumarrakeshkumar23135@gmail.com">kumarrakeshkumar23135@gmail.com</a></div>
-          <div class="contactline">📍 <span data-en="Service location: Varanasi & Surrounding Areas" data-hi="सेवा क्षेत्र: वाराणसी और आसपास के क्षेत्र">Service location: Varanasi & Surrounding Areas</span></div>
-          <p style="margin-top:18px" data-en="For emergencies, call the manager directly. Website requests are reviewed promptly." data-hi="आपतकाल के लिए प्रबंधक को सीधे कॉल करें। वेबसाइट अनुरोधों की तुरंत समीक्षा की जाती है।">For emergencies, call the manager directly. Website requests are reviewed promptly.</p>
-        </div>
-
-        <form name="jcb-maintenance-request" id="jcb-maintenance-request">
-          <input type="hidden" name="form-name" value="jcb-maintenance-request">
-          <div class="formgrid">
-            
-            <div class="field">
-              <label for="name" data-en="Customer name *" data-hi="ग्राहक का नाम *">Customer name *</label>
-              <input id="name" name="customer_name" required data-placeholder-en="Enter your full name" data-placeholder-hi="अपना पूरा नाम दर्ज करें" placeholder="Enter your full name">
-            </div>
-
-            <div class="field">
-              <label for="mobile" data-en="Mobile number *" data-hi="मोबाइल नंबर *">Mobile number *</label>
-              <input id="mobile" name="mobile" type="tel" inputmode="numeric" data-placeholder-en="Enter 10-digit mobile number" data-placeholder-hi="10-अंकों का मोबाइल नंबर दर्ज करें" placeholder="Enter 10-digit mobile number" maxlength="10" pattern="[6-9][0-9]{9}" title="Enter 10 digits starting with 6, 7, 8 or 9" required oninput="validateMobile()">
-              <small id="mobileError" style="color:red;display:none" data-en="Invalid number. Enter 10 digits starting with 6, 7, 8 or 9." data-hi="अमान्य नंबर। 6, 7, 8 या 9 से शुरू होने वाले 10 अंक दर्ज करें।">Invalid number. Enter 10 digits starting with 6, 7, 8 or 9.</small>
-            </div>
-
-            <div class="field">
-              <label for="email" data-en="Email address" data-hi="ईमेल पता">Email address</label>
-              <input id="email" name="email" type="email" data-placeholder-en="Enter your email address" data-placeholder-hi="अपना ईमेल पता दर्ज करें" placeholder="Enter your email address" autocomplete="email" required oninput="validateEmail()">
-              <small id="emailError" style="color:red;display:none" data-en="Invalid email address. Please check your email." data-hi="अमान्य ईमेल पता। कृपया जांचें।">Invalid email address. Please check your email.</small>
-            </div>
-
-            <div class="field">
-              <label for="machine" data-en="JCB model / machine no." data-hi="JCB मॉडल / मशीन नंबर">JCB model / machine no.</label>
-              <input id="machine" name="machine_details" data-placeholder-en="e.g. 3DX / machine number" data-placeholder-hi="उदा. 3DX / मशीन नंबर" placeholder="e.g. 3DX / machine number">
-            </div>
-
-            <div class="field full">
-              <label for="location" data-en="Worksite / machine location *" data-hi="कार्यस्थल / मशीन का स्थान *">Worksite / machine location *</label>
-              <input type="text" id="location" name="location" required readonly data-placeholder-en="Choose machine location on map" data-placeholder-hi="नक्शे पर मशीन का स्थान चुनें" placeholder="Choose machine location on map" onclick="openMachineMap()">
-              <button type="button" onclick="openMachineMap()" style="margin-top: 8px; width:100%; min-height:48px; cursor: pointer; border-radius:8px;" data-en="📍 Choose Location on Map" data-hi="📍 मानचित्र पर स्थान चुनें">📍 Choose Location on Map</button>
-            </div>
-
-            <div class="field">
-              <label for="problem" data-en="Problem type *" data-hi="समस्या का प्रकार *">Problem type *</label>
-              <select id="problem" name="problem_type" required>
-                <option value="" data-en="Select" data-hi="चुनें">Select</option>
-                <option data-en="Engine / starting" data-hi="इंजन / स्टार्ट न होना">Engine / starting</option>
-                <option data-en="Hydraulic system" data-hi="हाइड्रोलिक सिस्टम">Hydraulic system</option>
-                <option data-en="Electrical" data-hi="इलेक्ट्रिकल / बिजली">Electrical</option>
-                <option data-en="Transmission / drivetrain" data-hi="ट्रांसमिशन / ड्राइवट्रेन">Transmission / drivetrain</option>
-                <option data-en="Bucket / arm / attachment" data-hi="बकेट / आर्म / अटैचमेंट">Bucket / arm / attachment</option>
-                <option data-en="Tyre / undercarriage" data-hi="टायर / अंडरकैरेज">Tyre / undercarriage</option>
-                <option data-en="Routine maintenance" data-hi="नियमित रखरखाव">Routine maintenance</option>
-                <option data-en="Other" data-hi="अन्य">Other</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="priority" data-en="Priority" data-hi="प्राथमिकता">Priority</label>
-              <select id="priority" name="priority">
-                <option data-en="Normal" data-hi="सामान्य">Normal</option>
-                <option data-en="Machine stopped" data-hi="मशीन बंद है">Machine stopped</option>
-                <option data-en="Urgent" data-hi="अत्यंत आवश्यक (Urgent)">Urgent</option>
-              </select>
-            </div>
-
-            <div class="field full">
-              <label for="description" data-en="Describe the problem *" data-hi="समस्या का विवरण दें *">Describe the problem *</label>
-              <textarea id="description" name="problem_description" required data-placeholder-en="Tell us what happened, warning lights, unusual noise, leakage, etc." data-placeholder-hi="बताएं कि क्या हुआ, चेतावनी लाइट, असामान्य आवाज, रिसाव आदि।" placeholder="Tell us what happened, warning lights, unusual noise, leakage, etc."></textarea>
-            </div>
-
-            <div class="field full">
-              <label for="photo" data-en="Upload problem photo" data-hi="समस्या की फोटो अपलोड करें">Upload problem photo</label>
-              <input id="photo" name="problem_photo" type="file" accept="image/*" style="padding:10px;">
-            </div>
-
-            <div class="field full">
-              <label style="display:flex; align-items:flex-start; gap:8px;"><input type="checkbox" name="permission" value="yes" required style="width:auto; min-height:20px; margin-top:2px;"> <span data-en="I agree that the service team may use these details to contact me about this maintenance request." data-hi="मैं सहमत हूँ कि सेवा टीम इस अनुरोध के संबंध में मुझसे संपर्क करने के लिए इन विवरणों का उपयोग कर सकती है।">I agree that the service team may use these details to contact me about this maintenance request.</span></label>
-            </div>
+      <form name="jcb-maintenance-request" id="jcb-maintenance-request" style="background: var(--card-bg); padding: 24px; border-radius: 14px; border: 1px solid var(--border-color);">
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div>
+            <label data-en="Customer name *" data-hi="ग्राहक का नाम *">Customer name *</label>
+            <input required placeholder="Enter your full name">
           </div>
-          <p class="notice" style="font-size:13px; margin: 12px 0;" data-en="Please do not upload passwords, payment information or other unnecessary personal documents." data-hi="कृपया पासवर्ड, भुगतान की जानकारी या अन्य अनावश्यक व्यक्तिगत दस्तावेज अपलोड न करें।">Please do not upload passwords, payment information or other unnecessary personal documents.</p>
-          <button class="btn btn-yellow" type="submit" style="width:100%; min-height:48px;" data-en="Submit Service Request →" data-hi="सेवा अनुरोध जमा करें →">Submit Service Request →</button>
-        </form>
-      </div>
+          <div>
+            <label data-en="Mobile number *" data-hi="मोबाइल नंबर *">Mobile number *</label>
+            <input type="tel" required placeholder="Enter 10-digit mobile number">
+          </div>
+          <div>
+            <label data-en="Describe the problem *" data-hi="समस्या का विवरण दें *">Describe the problem *</label>
+            <textarea required placeholder="Describe issue..."></textarea>
+          </div>
+          <button type="submit" style="background: var(--accent-yellow); color: #000; font-weight: bold; border: none; min-height: 48px; border-radius: 8px; cursor: pointer;" data-en="Submit Service Request" data-hi="सेवा अनुरोध जमा करें">Submit Service Request</button>
+        </div>
+      </form>
     </div>
   </section>
 
-  <!-- Frequently Asked Questions (FAQ) Section -->
-  <section id="faq" class="services">
-    <div class="container">
-      <div class="section-head">
-        <h2 data-en="Frequently Asked Questions" data-hi="अक्सर पूछे जाने वाले प्रश्न (FAQ)">Frequently Asked Questions</h2>
-        <p data-en="Got questions about our JCB service? Here are answers to common queries." data-hi="हमारी JCB सेवा के बारे में प्रश्न हैं? यहाँ सामान्य प्रश्नों के उत्तर दिए गए हैं।">Got questions about our JCB service? Here are answers to common queries.</p>
+  <!-- APPS LAUNCHER MODAL -->
+  <div id="appsModal">
+    <div class="apps-panel">
+      <div class="apps-header">
+        <h3 style="margin: 0;" data-en="JCB Service Apps & Tools" data-hi="JCB सेवा ऐप्स और टूल">JCB Service Apps & Tools</h3>
+        <button onclick="closeAppsModal()" style="background: none; border: none; color: var(--text-primary); font-size: 20px; cursor: pointer;">✕</button>
       </div>
-      <div class="grid3">
-        <div class="card">
-          <h3 data-en="How fast can the team reach?" data-hi="टीम कितनी जल्दी पहुँच सकती है?">How fast can the team reach?</h3>
-          <p data-en="Response time depends on your worksite location around Varanasi and traffic conditions, usually within a few hours." data-hi="प्रतिक्रिया का समय वाराणसी के आसपास आपके कार्यस्थल और यातायात की स्थिति पर निर्भर करता है, आमतौर पर कुछ घंटों के भीतर।">Response time depends on your worksite location around Varanasi and traffic conditions, usually within a few hours.</p>
-        </div>
-        <div class="card">
-          <h3 data-en="What should I prepare before calling?" data-hi="कॉल करने से पहले मुझे क्या तैयार रखना चाहिए?">What should I prepare before calling?</h3>
-          <p data-en="Keep your machine model number (e.g. 3DX), exact location, and a clear description of the problem or error lights ready." data-hi="अपना मशीन मॉडल नंबर (जैसे 3DX), सटीक स्थान और समस्या का विवरण तैयार रखें।">Keep your machine model number (e.g. 3DX), exact location, and a clear description of the problem or error lights ready.</p>
-        </div>
-        <div class="card">
-          <h3 data-en="Can I send photos of the broken part?" data-hi="क्या मैं टूटे हुए हिस्से की फोटो भेज सकता हूँ?">Can I send photos of the broken part?</h3>
-          <p data-en="Yes! You can upload a photo directly through our service request form or share it instantly via our WhatsApp chat button." data-hi="हाँ! आप सीधे हमारे सेवा अनुरोध फॉर्म के माध्यम से फोटो अपलोड कर सकते हैं या व्हाट्सएप चैट के जरिए भेज सकते हैं।">Yes! You can upload a photo directly through our service request form or share it instantly via our WhatsApp chat button.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="contact" class="services">
-    <div class="container">
-      <div class="section-head">
-        <h2 data-en="Contact" data-hi="संपर्क विवरण">Contact</h2>
-        <p data-en="For direct assistance, contact the manager." data-hi="सीधी सहायता के लिए प्रबंधक से संपर्क करें।">For direct assistance, contact the manager.</p>
+      <div class="apps-grid">
+        <div class="app-card" onclick="launchApp('Diagnostic Tool')">
+          <div class="app-icon">🛠️</div>
+          <h4 style="margin: 0;" data-en="Fault Diagnostics" data-hi="फॉल्ट डायग्नोस्टिक्स">Fault Diagnostics</h4>
+        </div>
+        <div class="app-card" onclick="launchApp('Parts Catalog')">
+          <div class="app-icon">⚙️</div>
+          <h4 style="margin: 0;" data-en="Parts Finder" data-hi="पार्ट्स खोजें">Parts Finder</h4>
+        </div>
+        <div class="app-card" onclick="launchApp('Service Status')">
+          <div class="app-icon">📋</div>
+          <h4 style="margin: 0;" data-en="Request Tracker" data-hi="अनुरोध ट्रैकर">Request Tracker</h4>
+        </div>
+        <div class="app-card" onclick="launchApp('Emergency Hotline')">
+          <div class="app-icon">🚨</div>
+          <h4 style="margin: 0;" data-en="Emergency Dispatch" data-hi="आपातकालीन प्रेषण">Emergency Dispatch</h4>
+        </div>
       </div>
-      <div class="grid3">
-        <div class="card"><h3 data-en="Manager" data-hi="प्रबंधक">Manager</h3><p><strong>Munshi Ram</strong><br><span data-en="Service Manager" data-hi="सेवा प्रबंधक">Service Manager</span></p></div>
-        <div class="card"><h3 data-en="Phone" data-hi="फ़ोन नंबर">Phone</h3><p><a href="tel:8052587317" style="color:var(--accent-yellow);">8052587317</a></p></div>
-        <div class="card"><h3 data-en="Email" data-hi="ईमेल">Email</h3><p><a href="mailto:kumarrakeshkumar23135@gmail.com">kumarrakeshkumar23135@gmail.com</a></p></div>
-      </div>
-    </div>
-  </section>
 
-  <footer>
-    <div class="container footerin">
-      <div>
-        <div class="logo"><span class="logo-mark">JM</span><span>JCB MAINTENANCE<small data-en="FIELD SERVICE & SUPPORT" data-hi="फील्ड सेवा और सहायता">FIELD SERVICE & SUPPORT</small></span></div>
-        <p style="margin-top:12px; font-size:14px;" data-en="Professional maintenance-request website for heavy equipment service." data-hi="भारी उपकरणों की सेवा के लिए पेशेवर रखरखाव अनुरोध वेबसाइट।">Professional maintenance-request website for heavy equipment service.</p>
-      </div>
-      <div style="margin-top:16px;">
-        <p>© <span id="year"></span> JCB Maintenance Services. <span data-en="All rights reserved." data-hi="सर्वाधिकार सुरक्षित।">All rights reserved.</span></p>
-        <p data-en="Independent service business — not an official JCB website unless separately authorized." data-hi="स्वतंत्र सेवा व्यवसाय — जब तक अलग से अधिकृत न हो यह आधिकारिक JCB वेबसाइट नहीं है।">Independent service business — not an official JCB website unless separately authorized.</p>
-        <p style="margin-top: 10px;">
-          <a href="privacy.html" data-en="Privacy Policy" data-hi="गोपनीयता नीति">Privacy Policy</a> &nbsp; | &nbsp; <a href="#contact" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a>
-        </p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- MAP MODAL CONTAINER -->
-  <div id="machineMapModal">
-    <div class="machine-map-panel">
-      <h3 data-en="Select Machine Location" data-hi="मशीन का स्थान चुनें">Select Machine Location</h3>
-      <div id="machineMap"></div>
-      <div id="machineMapStatus" style="margin: 8px 0; font-size: 13px; color: var(--text-secondary);" data-en="Click on the map or use current location button." data-hi="मानचित्र पर क्लिक करें या वर्तमान स्थान बटन का उपयोग करें।">Click on the map or use current location button.</div>
-      <div class="machine-map-actions">
-        <button type="button" class="btn" onclick="useCurrentMachineLocation()" data-en="Use Current Location" data-hi="वर्तमान स्थान का उपयोग करें">Use Current Location</button>
-        <button type="button" class="btn" style="background:#ffcc00; color:#000; font-weight:700;" onclick="confirmMachineLocation()" data-en="Confirm Location" data-hi="स्थान की पुष्टि करें">Confirm Location</button>
-        <button type="button" class="btn" onclick="closeMachineMap()" data-en="Cancel" data-hi="रद्द करें">Cancel</button>
+      <div id="appDisplay" class="app-content-display">
+        <h4 id="appNameTitle" style="margin-top: 0; color: var(--accent-yellow);"></h4>
+        <p id="appDescription" style="margin-bottom: 0;"></p>
       </div>
     </div>
   </div>
 
-  <!-- SCRIPTS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Language Toggle Switch Logic for Text, Placeholders & Options
-    function setLanguage(language) {
-      document.querySelectorAll('[data-en][data-hi]').forEach(function (element) {
-        element.textContent =
-          language === 'hi'
-            ? element.getAttribute('data-hi')
-            : element.getAttribute('data-en');
-      });
-
-      document.querySelectorAll('[data-placeholder-en][data-placeholder-hi]').forEach(function (element) {
-        element.placeholder =
-          language === 'hi'
-            ? element.getAttribute('data-placeholder-hi')
-            : element.getAttribute('data-placeholder-en');
-      });
-
-      document.querySelectorAll('option[data-en][data-hi]').forEach(function (option) {
-        option.textContent =
-          language === 'hi'
-            ? option.getAttribute('data-hi')
-            : option.getAttribute('data-en');
-      });
-
-      document.documentElement.lang = language;
-
-      try {
-        localStorage.setItem('jcbLanguage', language);
-      } catch (error) {} 
-    }
-
-    // Load user's language choice
-    let savedLanguage = 'en';
-    try {
-      savedLanguage = localStorage.getItem('jcbLanguage') || 'en';
-    } catch (error) {}
-    setLanguage(savedLanguage);
-
-    // Theme Toggle Logic (Day Brightness / Dark Mode)
+    // Theme Toggle
     function toggleTheme() {
-      const htmlEl = document.documentElement;
-      const currentTheme = htmlEl.getAttribute('data-theme') || 'dark';
+      const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
-      htmlEl.setAttribute('data-theme', newTheme);
-      updateThemeButtonUI(newTheme);
-
-      try {
-        localStorage.setItem('jcbTheme', newTheme);
-      } catch (e) {}
+      document.documentElement.setAttribute('data-theme', newTheme);
+      document.getElementById('themeToggleText').innerText = newTheme === 'dark' ? 'Day Brightness' : 'Night Mode';
     }
 
-    function updateThemeButtonUI(theme) {
-      const btn = document.getElementById('themeToggleBtn');
-      if (theme === 'light') {
-        btn.innerHTML = '🌙 <span id="themeToggleText" data-en="Dark Mode" data-hi="डार्क मोड">Dark Mode</span>';
-      } else {
-        btn.innerHTML = '☀️ <span id="themeToggleText" data-en="Day Brightness" data-hi="दिन की चमक">Day Brightness</span>';
-      }
-      const currentLang = document.documentElement.lang || 'en';
-      setLanguage(currentLang);
+    // Language Toggle
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.innerText = el.getAttribute(`data-${lang}`);
+      });
     }
 
-    // Load saved theme preference on page load
-    try {
-      const savedTheme = localStorage.getItem('jcbTheme') || 'dark';
-      document.documentElement.setAttribute('data-theme', savedTheme);
-      updateThemeButtonUI(savedTheme);
-    } catch (e) {}
-
-    // Back to Top Button Logic
-    window.addEventListener('scroll', () => {
-      const topBtn = document.getElementById('backToTopBtn');
-      if (window.scrollY > 300) {
-        topBtn.classList.add('show');
+    // Scroll to Top
+    window.onscroll = function() {
+      const btn = document.getElementById('backToTopBtn');
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        btn.classList.add('show');
       } else {
-        topBtn.classList.remove('show');
+        btn.classList.remove('show');
       }
-    });
+    };
 
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Apps Modal Handlers
+    function openAppsModal() {
+      document.getElementById('appsModal').style.display = 'flex';
+    }
+
+    function closeAppsModal() {
+      document.getElementById('appsModal').style.display = 'none';
+      document.getElementById('appDisplay').style.display = 'none';
+    }
+
+    function launchApp(appName) {
+      const display = document.getElementById('appDisplay');
+      const title = document.getElementById('appNameTitle');
+      const desc = document.getElementById('appDescription');
+
+      display.style.display = 'block';
+      title.innerText = appName;
+
+      if (appName === 'Diagnostic Tool') {
+        desc.innerText = "Running diagnostic check... Select machine code to diagnose starting, hydraulic, or motor issues.";
+      } else if (appName === 'Parts Catalog') {
+        desc.innerText = "Browsing official JCB spare parts list & hydraulic fittings availability.";
+      } else if (appName === 'Service Status') {
+        desc.innerText = "Connecting to Netlify dashboard... Tracking recent field service requests.";
+      } else if (appName === 'Emergency Hotline') {
+        desc.innerText = "Direct dispatch requested. Contact manager Munshi Ram immediately at 8052587317.";
+      }
     }
   </script>
 </body>
