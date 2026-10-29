@@ -81,79 +81,6 @@
       font-size: clamp(14px, 3.5vw, 16px);
     }
 
-    /* Ambient Background Glow Effect */
-    .hero {
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(450px, 90vw);
-      height: min(450px, 90vw);
-      background: radial-gradient(circle, rgba(255, 183, 0, 0.25) 0%, rgba(0, 210, 255, 0.15) 50%, transparent 75%);
-      filter: blur(80px);
-      border-radius: 50%;
-      z-index: 0;
-      animation: ambientPulse 7s ease-in-out infinite alternate;
-    }
-
-    @keyframes ambientPulse {
-      0% { transform: translateX(-50%) scale(0.9); opacity: 0.7; }
-      100% { transform: translateX(-50%) scale(1.2); opacity: 1; }
-    }
-
-    .hero .container {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Cards, Stats, and Contact Boxes */
-    .card, .contactbox, .stat {
-      background-color: var(--card-bg) !important;
-      color: var(--text-primary) !important;
-      border: 1px solid var(--border-color) !important;
-      box-shadow: var(--card-shadow);
-      border-radius: 14px;
-      padding: 18px;
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
-                  box-shadow 0.3s ease, 
-                  border-color 0.3s ease,
-                  background-color 0.3s ease;
-    }
-
-    .card p, .card h3, .stat span, .stat b {
-      color: var(--text-primary) !important;
-    }
-    .card p, .stat span {
-      color: var(--text-secondary) !important;
-    }
-
-    @media (hover: hover) {
-      .card:hover, .stat:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--card-hover-shadow);
-        border-color: var(--accent-yellow) !important;
-      }
-    }
-
-    .card:active, .stat:active {
-      transform: translateY(-4px);
-      border-color: var(--accent-yellow) !important;
-    }
-
-    @keyframes blink247 {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .availability-badge {
-      animation: blink247 1.5s infinite;
-    }
-
     /* Top Controls Bar */
     .language-switch {
       background: var(--bg-secondary);
@@ -193,25 +120,7 @@
       border-color: var(--accent-yellow);
     }
 
-    /* Form Inputs Optimization */
-    input, select, textarea {
-      width: 100%;
-      min-height: 48px;
-      padding: 12px 14px;
-      border-radius: 8px;
-      font-size: 16px;
-      background-color: var(--card-bg);
-      color: var(--text-primary);
-      border: 1px solid var(--border-color);
-      box-sizing: border-box;
-    }
-
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    /* Floating WhatsApp Button & Back to Top */
+    /* Floating WhatsApp & Back to Top */
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
@@ -228,7 +137,6 @@
       font-weight: 700;
       text-decoration: none;
       font-size: 14px;
-      transition: transform 0.2s ease, background-color 0.2s ease;
     }
 
     .back-to-top {
@@ -258,30 +166,51 @@
       visibility: visible;
     }
 
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
+    /* =========================================================
+       HERO SPLIT SECTION (Cube Left | Form Right)
+       ========================================================= */
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
     }
 
-    /* =========================================================
-       NEW FEATURE 1: 3D MOVING CUBE SECTION
-       ========================================================= */
-    .cube-section {
-      padding: 50px 20px;
+    .hero-left {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      background: var(--bg-secondary);
-      border-y: 1px solid var(--border-color);
+      text-align: center;
     }
 
+    /* Dynamic Typing Text Animation */
+    .typing-container {
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--accent-yellow);
+      min-height: 40px;
+      margin: 15px 0;
+    }
+
+    .typing-text::after {
+      content: '|';
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* 3D Moving Cube */
     .cube-container {
       width: 200px;
       height: 200px;
       perspective: 1000px;
-      margin: 40px auto;
+      margin: 30px auto;
     }
 
     .cube {
@@ -296,17 +225,16 @@
       position: absolute;
       width: 200px;
       height: 200px;
-      background: rgba(19, 29, 51, 0.9);
+      background: rgba(19, 29, 51, 0.95);
       border: 2px solid var(--accent-yellow);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
       color: var(--accent-yellow);
-      box-shadow: 0 0 20px rgba(255, 183, 0, 0.2);
+      box-shadow: 0 0 20px rgba(255, 183, 0, 0.25);
       text-transform: uppercase;
-      letter-spacing: 1px;
       text-align: center;
       padding: 10px;
     }
@@ -323,9 +251,57 @@
       100% { transform: rotateX(360deg) rotateY(360deg); }
     }
 
-    /* =========================================================
-       NEW FEATURE 2: APPS LAUNCHER MODAL & APP GRID
-       ========================================================= */
+    /* Hero Form Right */
+    .hero-right-form {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .hero-right-form h3 {
+      margin-top: 0;
+      color: var(--accent-yellow);
+      font-size: 22px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      font-size: 14px;
+    }
+
+    .form-group textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    /* Mobile Responsive Layout */
+    @media screen and (max-width: 900px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Apps Modal Styles */
     #appsModal {
       display: none;
       position: fixed;
@@ -342,20 +318,10 @@
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       width: 100%;
-      max-width: 600px;
+      max-width: 550px;
       border-radius: 16px;
       padding: 24px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
       position: relative;
-    }
-
-    .apps-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 12px;
     }
 
     .apps-grid {
@@ -376,51 +342,30 @@
 
     .app-card:hover {
       border-color: var(--accent-yellow);
-      transform: translateY(-4px);
-    }
-
-    .app-card .app-icon {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
-
-    .app-content-display {
-      margin-top: 20px;
-      padding: 16px;
-      background: var(--bg-primary);
-      border-radius: 8px;
-      border: 1px dashed var(--accent-yellow);
-      display: none;
-    }
-
-    @media screen and (max-width: 768px) {
-      .apps-grid { grid-template-columns: 1fr; }
     }
   </style>
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4571845452510034" crossorigin="anonymous"></script>
-  <meta name="google-adsense-account" content="ca-pub-4571845452510034">
 </head>
 
 <body>
-  <!-- Floating WhatsApp Button -->
+  <!-- WhatsApp Float -->
   <a href="https://wa.me/918052587317?text=Hello%20Munshi%20Ram,%20I%20need%20JCB%20maintenance%20support." class="whatsapp-float" target="_blank" rel="noopener">
     💬 <span data-en="Chat on WhatsApp" data-hi="व्हाट्सएप पर चैट करें">Chat on WhatsApp</span>
   </a>
 
-  <!-- Back to Top Button -->
+  <!-- Back to Top -->
   <button type="button" id="backToTopBtn" class="back-to-top" onclick="scrollToTop()" title="Back to top">↑</button>
 
-  <!-- TOP BAR WITH THEME, LANGUAGE & APP LAUNCHER BUTTON -->
+  <!-- Top bar controls -->
   <div class="language-switch">
     <button type="button" id="themeToggleBtn" onclick="toggleTheme()" class="theme-toggle-btn">
       ☀️ <span id="themeToggleText" data-en="Day Brightness" data-hi="दिन की चमक">Day Brightness</span>
     </button>
-    
+
     <div style="display: flex; gap: 8px;">
-      <!-- Corner Apps Button -->
       <button type="button" class="app-launcher-btn" onclick="openAppsModal()">
-        :: <span data-en="Apps" data-hi="ऐप्स">App</span>
+        :: <span data-en="App" data-hi="ऐप्स">App</span>
       </button>
 
       <button type="button" onclick="setLanguage('en')">English</button>
@@ -429,118 +374,108 @@
   </div>
 
   <div class="topbar">
-    <div class="container" style="display: flex; justify-content: space-between; padding: 10px 4%;">
+    <div style="display: flex; justify-content: space-between; padding: 10px 4%; font-size: 14px;">
       <span data-en="Professional Heavy Equipment Maintenance" data-hi="पेशेवर भारी उपकरण रखरखाव">Professional Heavy Equipment Maintenance</span>
       <span><span data-en="Manager: Munshi Ram" data-hi="प्रबंधक: मुंशी राम">Manager: Munshi Ram</span> · <a href="tel:8052587317" style="color:var(--accent-yellow);">8052587317</a></span>
     </div>
   </div>
 
-  <nav class="nav" style="padding: 10px 4%; border-bottom: 1px solid var(--border-color);">
-    <div class="container navin" style="display: flex; justify-content: space-between; align-items: center;">
-      <a class="logo" href="#" style="text-decoration:none; color:var(--text-primary); font-weight:bold; font-size: 20px;"><span style="color:var(--accent-yellow);">JM</span> JCB MAINTENANCE</a>
-      <a class="btn btn-yellow" href="tel:8052587317" style="background:var(--accent-yellow); color:#000; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:bold;" data-en="Call Manager" data-hi="मैनेजर को कॉल करें">Call Manager</a>
-    </div>
+  <nav style="padding: 12px 4%; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+    <a href="#" style="text-decoration:none; color:var(--text-primary); font-weight:bold; font-size: 20px;"><span style="color:var(--accent-yellow);">JM</span> JCB MAINTENANCE</a>
+    <a href="tel:8052587317" style="background:var(--accent-yellow); color:#000; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:bold;" data-en="Call Manager" data-hi="मैनेजर को कॉल करें">Call Manager</a>
   </nav>
 
-  <header class="hero">
-    <div class="container" style="text-align: center; padding: 50px 20px;">
-      <div class="hero-content">
-        <div class="availability-badge" style="display:inline-flex;align-items:center;gap:8px;background:#292012;border:1px solid #8a5b00;border-radius:25px;padding:8px 14px;margin-bottom:16px;color:#ffa500;font-size:13px;">
-          <span style="color:#22c55e;">●</span> <span data-en="Available 24/7 for JCB Services" data-hi="JCB सेवाओं के लिए 24/7 उपलब्ध">Available 24/7 for JCB Services</span>
+  <!-- MAIN HERO SECTION -->
+  <section class="hero">
+    <div class="hero-container">
+      
+      <!-- LEFT SIDE: Title, Typing Text & 3D Cube -->
+      <div class="hero-left">
+        <h1 style="font-size: 32px; margin-bottom: 5px;" data-en="JCB Maintenance Services" data-hi="JCB मर्मत सेवाएं">JCB Maintenance Services</h1>
+        
+        <!-- Dynamic Typing Feature -->
+        <div class="typing-container">
+          <span class="typing-text" id="typingText"></span>
         </div>
 
-        <h1 data-en="Keep your JCB working. Keep your project moving." data-hi="अपनी JCB चालू रखें। अपना काम आगे बढ़ाते रहें।">Keep your JCB working. Keep your project moving.</h1>
-
-        <p data-en="Professional field maintenance and breakdown support for JCB construction equipment." data-hi="JCB मशीनों की मरम्मत और खराबी के समय सहायता पाएँ।">Professional field maintenance and breakdown support for JCB construction equipment.</p>
-
-        <div class="actions" style="margin-top: 20px;">
-          <a href="#request" style="background:var(--accent-yellow);color:#000;padding:14px 20px;border-radius:12px;text-decoration:none;font-weight:700;" data-en="Request Maintenance" data-hi="मरम्मत के लिए अनुरोध करें">Request Maintenance</a>
+        <!-- 3D Rotating Cube -->
+        <div class="cube-container">
+          <div class="cube">
+            <div class="cube-face front">JCB Support</div>
+            <div class="cube-face back">Services</div>
+            <div class="cube-face right">Worksite</div>
+            <div class="cube-face left">Contact</div>
+            <div class="cube-face top">Fast Field</div>
+            <div class="cube-face bottom">24/7 Service</div>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
 
-  <!-- 3D MOVING CUBE SECTION -->
-  <section class="cube-section">
-    <div class="section-head" style="text-align: center;">
-      <h2 data-en="Interactive JCB Service Hub" data-hi="इंटरएक्टिव JCB सेवा हब">Interactive JCB Service Hub</h2>
-      <p data-en="3D Overview of Core Services" data-hi="मुख्य सेवाओं का 3D अवलोकन">3D Overview of Core Services</p>
-    </div>
+      <!-- RIGHT SIDE: Customer Service Request Form -->
+      <div class="hero-right-form">
+        <h3 data-en="Request Maintenance" data-hi="मरम्मत के लिए अनुरोध करें">Request Maintenance</h3>
+        <form name="jcb-maintenance-request" method="POST" data-netlify="true" enctype="multipart/form-data">
+          <input type="hidden" name="form-name" value="jcb-maintenance-request">
+          
+          <div class="form-group">
+            <label data-en="Customer Name *" data-hi="ग्राहक का नाम *">Customer Name *</label>
+            <input type="text" name="customer_name" required placeholder="Enter full name">
+          </div>
 
-    <div class="cube-container">
-      <div class="cube">
-        <div class="cube-face front">JCB Support</div>
-        <div class="cube-face back">Services</div>
-        <div class="cube-face right">Worksite</div>
-        <div class="cube-face left">Contact</div>
-        <div class="cube-face top">Fast Field</div>
-        <div class="cube-face bottom">24/7 Service</div>
+          <div class="form-group">
+            <label data-en="Mobile Number *" data-hi="मोबाइल नंबर *">Mobile Number *</label>
+            <input type="tel" name="mobile" required placeholder="10-digit mobile number">
+          </div>
+
+          <div class="form-group">
+            <label data-en="Email Address" data-hi="ईमेल पता">Email Address</label>
+            <input type="email" name="email" placeholder="Enter email address">
+          </div>
+
+          <div class="form-group">
+            <label data-en="Worksite Address / Location *" data-hi="कार्यस्थल / स्थान *">Worksite Address / Location *</label>
+            <input type="text" name="location" required placeholder="Machine location or site address">
+          </div>
+
+          <div class="form-group">
+            <label data-en="Machine Details & Problem *" data-hi="मशीन का विवरण और समस्या *">Machine Details & Problem *</label>
+            <textarea name="problem_description" required placeholder="Describe issue (e.g. 3DX, hydraulic leak, engine starting problem)"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label data-en="Upload Problem Photo" data-hi="समस्या की फोटो अपलोड करें">Upload Problem Photo</label>
+            <input type="file" name="problem_photo" accept="image/*">
+          </div>
+
+          <button type="submit" style="width:100%; background:var(--accent-yellow); color:#000; font-weight:bold; border:none; min-height:46px; border-radius:8px; cursor:pointer;" data-en="Submit Request →" data-hi="अनुरोध जमा करें →">Submit Request →</button>
+        </form>
       </div>
-    </div>
-  </section>
 
-  <!-- REQUEST FORM SECTION -->
-  <section id="request" style="padding: 40px 20px;">
-    <div class="container" style="max-width: 800px; margin: 0 auto;">
-      <div class="section-head" style="text-align: center;">
-        <h2 data-en="Request JCB maintenance" data-hi="JCB मरम्मत का अनुरोध करें">Request JCB maintenance</h2>
-      </div>
-      <form name="jcb-maintenance-request" id="jcb-maintenance-request" style="background: var(--card-bg); padding: 24px; border-radius: 14px; border: 1px solid var(--border-color);">
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-          <div>
-            <label data-en="Customer name *" data-hi="ग्राहक का नाम *">Customer name *</label>
-            <input required placeholder="Enter your full name">
-          </div>
-          <div>
-            <label data-en="Mobile number *" data-hi="मोबाइल नंबर *">Mobile number *</label>
-            <input type="tel" required placeholder="Enter 10-digit mobile number">
-          </div>
-          <div>
-            <label data-en="Describe the problem *" data-hi="समस्या का विवरण दें *">Describe the problem *</label>
-            <textarea required placeholder="Describe issue..."></textarea>
-          </div>
-          <button type="submit" style="background: var(--accent-yellow); color: #000; font-weight: bold; border: none; min-height: 48px; border-radius: 8px; cursor: pointer;" data-en="Submit Service Request" data-hi="सेवा अनुरोध जमा करें">Submit Service Request</button>
-        </div>
-      </form>
     </div>
   </section>
 
   <!-- APPS LAUNCHER MODAL -->
   <div id="appsModal">
     <div class="apps-panel">
-      <div class="apps-header">
-        <h3 style="margin: 0;" data-en="JCB Service Apps & Tools" data-hi="JCB सेवा ऐप्स और टूल">JCB Service Apps & Tools</h3>
-        <button onclick="closeAppsModal()" style="background: none; border: none; color: var(--text-primary); font-size: 20px; cursor: pointer;">✕</button>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3 style="margin:0;" data-en="JCB Service Tools" data-hi="JCB सेवा टूल">JCB Service Tools</h3>
+        <button onclick="closeAppsModal()" style="background:none; border:none; color:var(--text-primary); font-size:20px; cursor:pointer;">✕</button>
       </div>
-
       <div class="apps-grid">
-        <div class="app-card" onclick="launchApp('Diagnostic Tool')">
-          <div class="app-icon">🛠️</div>
-          <h4 style="margin: 0;" data-en="Fault Diagnostics" data-hi="फॉल्ट डायग्नोस्टिक्स">Fault Diagnostics</h4>
+        <div class="app-card" onclick="alert('Fault Diagnostics Tool Selected')">
+          <div style="font-size:28px;">🛠️</div>
+          <h4 style="margin:6px 0 0 0;" data-en="Diagnostics" data-hi="डायग्नोस्टिक्स">Diagnostics</h4>
         </div>
-        <div class="app-card" onclick="launchApp('Parts Catalog')">
-          <div class="app-icon">⚙️</div>
-          <h4 style="margin: 0;" data-en="Parts Finder" data-hi="पार्ट्स खोजें">Parts Finder</h4>
+        <div class="app-card" onclick="alert('Parts Finder Selected')">
+          <div style="font-size:28px;">⚙️</div>
+          <h4 style="margin:6px 0 0 0;" data-en="Parts Finder" data-hi="पार्ट्स खोजें">Parts Finder</h4>
         </div>
-        <div class="app-card" onclick="launchApp('Service Status')">
-          <div class="app-icon">📋</div>
-          <h4 style="margin: 0;" data-en="Request Tracker" data-hi="अनुरोध ट्रैकर">Request Tracker</h4>
-        </div>
-        <div class="app-card" onclick="launchApp('Emergency Hotline')">
-          <div class="app-icon">🚨</div>
-          <h4 style="margin: 0;" data-en="Emergency Dispatch" data-hi="आपातकालीन प्रेषण">Emergency Dispatch</h4>
-        </div>
-      </div>
-
-      <div id="appDisplay" class="app-content-display">
-        <h4 id="appNameTitle" style="margin-top: 0; color: var(--accent-yellow);"></h4>
-        <p id="appDescription" style="margin-bottom: 0;"></p>
       </div>
     </div>
   </div>
 
   <script>
-    // Theme Toggle
+    // Theme Switch
     function toggleTheme() {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -548,14 +483,59 @@
       document.getElementById('themeToggleText').innerText = newTheme === 'dark' ? 'Day Brightness' : 'Night Mode';
     }
 
-    // Language Toggle
+    // Language Switch
     function setLanguage(lang) {
       document.querySelectorAll('[data-en]').forEach(el => {
         el.innerText = el.getAttribute(`data-${lang}`);
       });
     }
 
-    // Scroll to Top
+    // Dynamic Typing Effect
+    const words = ["Fast Field Support", "24/7 Breakdown Assistance", "Hydraulic & Engine Service", "Varanasi & Nearby Regional Sites"];
+    let i = 0;
+    let timer;
+
+    function typingEffect() {
+      let word = words[i].split("");
+      var loopTyping = function() {
+        if (word.length > 0) {
+          document.getElementById('typingText').innerHTML += word.shift();
+        } else {
+          setTimeout(deletingEffect, 2000);
+          return false;
+        }
+        timer = setTimeout(loopTyping, 100);
+      };
+      loopTyping();
+    }
+
+    function deletingEffect() {
+      let word = words[i].split("");
+      var loopDeleting = function() {
+        if (word.length > 0) {
+          word.pop();
+          document.getElementById('typingText').innerHTML = word.join("");
+        } else {
+          if (words.length > (i + 1)) {
+            i++;
+          } else {
+            i = 0;
+          }
+          setTimeout(typingEffect, 500);
+          return false;
+        }
+        timer = setTimeout(loopDeleting, 50);
+      };
+      loopDeleting();
+    }
+
+    typingEffect();
+
+    // Modal controls
+    function openAppsModal() { document.getElementById('appsModal').style.display = 'flex'; }
+    function closeAppsModal() { document.getElementById('appsModal').style.display = 'none'; }
+
+    // Back to top scroll
     window.onscroll = function() {
       const btn = document.getElementById('backToTopBtn');
       if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
@@ -564,39 +544,7 @@
         btn.classList.remove('show');
       }
     };
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Apps Modal Handlers
-    function openAppsModal() {
-      document.getElementById('appsModal').style.display = 'flex';
-    }
-
-    function closeAppsModal() {
-      document.getElementById('appsModal').style.display = 'none';
-      document.getElementById('appDisplay').style.display = 'none';
-    }
-
-    function launchApp(appName) {
-      const display = document.getElementById('appDisplay');
-      const title = document.getElementById('appNameTitle');
-      const desc = document.getElementById('appDescription');
-
-      display.style.display = 'block';
-      title.innerText = appName;
-
-      if (appName === 'Diagnostic Tool') {
-        desc.innerText = "Running diagnostic check... Select machine code to diagnose starting, hydraulic, or motor issues.";
-      } else if (appName === 'Parts Catalog') {
-        desc.innerText = "Browsing official JCB spare parts list & hydraulic fittings availability.";
-      } else if (appName === 'Service Status') {
-        desc.innerText = "Connecting to Netlify dashboard... Tracking recent field service requests.";
-      } else if (appName === 'Emergency Hotline') {
-        desc.innerText = "Direct dispatch requested. Contact manager Munshi Ram immediately at 8052587317.";
-      }
-    }
+    function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
   </script>
 </body>
 </html>
