@@ -355,8 +355,8 @@
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
     }
 
     /* Form Design */
@@ -453,12 +453,6 @@
     .back-to-top.show {
       opacity: 1;
       visibility: visible;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
     }
 
     /* Footer Styling */
@@ -574,7 +568,7 @@
         </div>
 
         <!-- RIGHT SIDE: Complete Service Request Form -->
-        <div class="card" style="padding: 24px;">
+        <div class="card" style="padding: 24px;" id="request">
           <h3 style="margin-top:0; color:var(--accent-yellow); text-align:center;" data-en="Request Maintenance" data-hi="मरम्मत के लिए अनुरोध करें">Request Maintenance</h3>
           
           <form name="jcb-maintenance-request" id="jcb-maintenance-request" method="POST" data-netlify="true" enctype="multipart/form-data">
@@ -749,10 +743,21 @@
         <p data-en="Professional visual presentation inspired by modern construction-equipment service websites." data-hi="आधुनिक निर्माण-उपकरण सेवा वेबसाइटों से प्रेरित पेशेवर कार्य प्रस्तुति।">Professional visual presentation inspired by modern construction-equipment service websites.</p>
       </div>
       <div class="gallery">
-        <img src="https://placehold.co/600x400/131d33/ffb700?text=JCB+Machine+at+Work" alt="JCB machine at work">
-        <img src="https://placehold.co/600x400/131d33/ffb700?text=JCB+Repair+Service" alt="JCB repair service">
-        <img src="https://placehold.co/600x400/131d33/ffb700?text=JCB+Maintenance" alt="JCB maintenance">
-        <img src="https://placehold.co/600x400/131d33/ffb700?text=JCB+Worksite" alt="JCB worksite">
+        <div class="card" style="text-align: center; padding: 30px 20px;">
+          <div style="font-size: 36px; margin-bottom: 10px;">🚜</div>
+          <h3 data-en="Excavator & Loader Care" data-hi="एक्सवेक्टर और लोडर देखभाल">Excavator & Loader Care</h3>
+          <p data-en="Specialized maintenance for backhoe loaders and earthmoving fleets." data-hi="बैकहो लोडर और मिट्टी हटाने वाले बेड़े के लिए विशेष रखरखाव।">Specialized maintenance for backhoe loaders and earthmoving fleets.</p>
+        </div>
+        <div class="card" style="text-align: center; padding: 30px 20px;">
+          <div style="font-size: 36px; margin-bottom: 10px;">⚡</div>
+          <h3 data-en="Hydraulic Diagnostics" data-hi="हाइड्रोलिक निदान">Hydraulic Diagnostics</h3>
+          <p data-en="Precise pressure testing and cylinder repair support on-site." data-hi="साइट पर सटीक दबाव परीक्षण और सिलेंडर मरम्मत सहायता।">Precise pressure testing and cylinder repair support on-site.</p>
+        </div>
+        <div class="card" style="text-align: center; padding: 30px 20px;">
+          <div style="font-size: 36px; margin-bottom: 10px;">🛡️</div>
+          <h3 data-en="Preventive Checkups" data-hi="निवारक जांच">Preventive Checkups</h3>
+          <p data-en="Scheduled safety checks and fluid replacements to eliminate downtime." data-hi="समय को कम करने के लिए निर्धारित सुरक्षा जांच और द्रव प्रतिस्थापन।">Scheduled safety checks and fluid replacements to eliminate downtime.</p>
+        </div>
       </div>
     </div>
   </section>
