@@ -199,7 +199,7 @@
       align-items: center;
     }
 
-    /* Circular RK Logo Badge */
+    /* Circular JM Logo Badge */
     .logo-box {
       display: inline-flex;
       align-items: center;
@@ -215,12 +215,12 @@
       height: 44px;
       border-radius: 50%;
       background: linear-gradient(135deg, #070b14, #131d33);
-      border: 2px solid #00d2ff;
-      box-shadow: 0 0 12px rgba(0, 210, 255, 0.4);
+      border: 2px solid #ffb700;
+      box-shadow: 0 0 12px rgba(255, 183, 0, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #00d2ff;
+      color: #ffb700;
       font-weight: 800;
       font-size: 16px;
       letter-spacing: 0.5px;
@@ -343,7 +343,7 @@
     }
 
     /* Grids & Layout Sections */
-    .stats, .services, #process, #coverage, #gallery, #request, #faq {
+    .stats, .services, #process, #coverage, #gallery, #request, #faq, footer {
       padding: 40px 0;
     }
 
@@ -461,54 +461,11 @@
       border-radius: 8px;
     }
 
-    /* App Modal & Map Launcher */
-    #appsModal, #machineMapModal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 999999;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-
-    .apps-panel, .machine-map-panel {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      width: 100%;
-      max-width: 600px;
-      border-radius: 16px;
-      padding: 24px;
-      position: relative;
-    }
-
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .app-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 16px;
+    /* Footer Styling */
+    footer {
+      background-color: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
       text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .app-card:hover {
-      border-color: var(--accent-yellow);
-    }
-
-    #machineMap {
-      height: 300px;
-      width: 100%;
-      margin: 12px 0;
-      border-radius: 8px;
     }
 
     /* Android Mobile & Tablet Responsive */
@@ -519,7 +476,7 @@
     }
 
     @media screen and (max-width: 768px) {
-      .grid3, .statgrid, .formgrid, .apps-grid {
+      .grid3, .statgrid, .formgrid {
         grid-template-columns: 1fr !important;
       }
       .formgrid .full {
@@ -557,10 +514,6 @@
     </button>
     
     <div style="display: flex; gap: 8px;">
-      <button type="button" class="app-launcher-btn" onclick="openAppsModal()">
-        :: <span data-en="App" data-hi="ऐप्स">App</span>
-      </button>
-
       <button type="button" onclick="setLanguage('en')">English</button>
       <button type="button" onclick="setLanguage('hi')">हिन्दी</button>
     </div>
@@ -576,7 +529,7 @@
   <nav class="nav">
     <div class="container navin">
       <a class="logo-box" href="#">
-        <div class="circular-logo">RK</div>
+        <div class="circular-logo">JM</div>
         <span>JCB MAINTENANCE</span>
       </a>
       <div class="links">
@@ -635,8 +588,7 @@
 
               <div class="field">
                 <label for="mobile" data-en="Mobile number *" data-hi="मोबाइल नंबर *">Mobile number *</label>
-                <input id="mobile" name="mobile" type="tel" inputmode="numeric" placeholder="10-digit mobile number" maxlength="10" pattern="[6-9][0-9]{9}" required oninput="validateMobile()">
-                <small id="mobileError" style="color:red;display:none" data-en="Enter 10 digits starting with 6-9." data-hi="6-9 से शुरू होने वाले 10 अंक दर्ज करें।">Enter 10 digits starting with 6-9.</small>
+                <input id="mobile" name="mobile" type="tel" inputmode="numeric" placeholder="10-digit mobile number" maxlength="10" pattern="[6-9][0-9]{9}" required>
               </div>
 
               <div class="field">
@@ -651,8 +603,7 @@
 
               <div class="field full">
                 <label for="location" data-en="Worksite / machine location *" data-hi="कार्यस्थल / मशीन का स्थान *">Worksite / machine location *</label>
-                <input type="text" id="location" name="location" required placeholder="Choose machine location on map" onclick="openMachineMap()">
-                <button type="button" onclick="openMachineMap()" style="margin-top: 6px; width:100%; min-height:40px; cursor: pointer; border-radius:8px; background:var(--card-bg); color:var(--text-primary); border:1px solid var(--border-color);" data-en="📍 Choose Location on Map" data-hi="📍 मानचित्र पर स्थान चुनें">📍 Choose Location on Map</button>
+                <input type="text" id="location" name="location" required placeholder="Enter worksite location">
               </div>
 
               <div class="field">
@@ -819,60 +770,26 @@
           <p data-en="Our service team responds promptly depending on site distance within Varanasi and surrounding regional areas." data-hi="हमारी सेवा टीम वाराणसी और आसपास के क्षेत्रों में साइट की दूरी के आधार पर तुरंत प्रतिक्रिया देती है।">Our service team responds promptly depending on site distance within Varanasi and surrounding regional areas.</p>
         </div>
         <div class="card">
-          <h3 data-en="How do I upload a problem photo?" data-hi="मैं समस्या की फोटो कैसे अपलोड करूं?">How do I upload a problem photo?</h3>
-          <p data-en="Use the service request form above to attach an image file of the machine issue directly." data-hi="मशीन की समस्या की तस्वीर सीधे जोड़ने के लिए ऊपर दिए गए सेवा अनुरोध फॉर्म का उपयोग करें।">Use the service request form above to attach an image file of the machine issue directly.</p>
+          <h3 data-en="How do I upload a problem photo?" data-hi="मैं समस्या की फोटो कैसे अपलोड करूँ?">How do I upload a problem photo?</h3>
+          <p data-en="Use the service request form above to attach an image file of the machine issue directly." data-hi="मशीन की समस्या की छवि फ़ाइल सीधे संलग्न करने के लिए ऊपर दिए गए सेवा अनुरोध फ़ॉर्म का उपयोग करें।">Use the service request form above to attach an image file of the machine issue directly.</p>
         </div>
         <div class="card">
           <h3 data-en="Who manages the service operations?" data-hi="सेवा संचालन का प्रबंधन कौन करता है?">Who manages the service operations?</h3>
-          <p data-en="Manager Munshi Ram oversees all field maintenance requests and breakdown support." data-hi="प्रबंधक मुंशी राम सभी फील्ड रखरखाव अनुरोधों और ब्रेकडाउन सहायता की देखरेख करते हैं।">Manager Munshi Ram oversees all field maintenance requests and breakdown support.</p>
+          <p data-en="Manager Munshi Ram oversees all field maintenance requests and breakdown support." data-hi="प्रबंधक मुंशी राम सभी फ़ील्ड रखरखाव अनुरोधों और ब्रेकडाउन सहायता की देखरेख करते हैं।">Manager Munshi Ram oversees all field maintenance requests and breakdown support.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER WITH RK LOGO & COPYRIGHT -->
-  <footer style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); padding: 40px 0; text-align: center;">
-    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
-      <div class="circular-logo">RK</div>
-      <p style="margin: 0; color: var(--text-secondary); font-size: 14px;">© 2026 JCB Maintenance Services. All Rights Reserved.</p>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="circular-logo" style="margin: 0 auto 16px auto;">JM</div>
+      <p style="margin: 0; font-size: 14px; color: var(--text-secondary);">© 2026 JCB Maintenance Services. All Rights Reserved.</p>
     </div>
   </footer>
 
-  <!-- APPS LAUNCHER MODAL -->
-  <div id="appsModal">
-    <div class="apps-panel">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-        <h3 style="margin:0;" data-en="JCB Service Tools" data-hi="JCB सेवा टूल">JCB Service Tools</h3>
-        <button onclick="closeAppsModal()" style="background:none; border:none; color:var(--text-primary); font-size:20px; cursor:pointer;">✕</button>
-      </div>
-      <div class="apps-grid">
-        <div class="app-card" onclick="alert('Fault Diagnostics Tool Selected')">
-          <div style="font-size:28px;">🛠️</div>
-          <h4 style="margin:6px 0 0 0;" data-en="Diagnostics" data-hi="डायग्नोस्टिक्स">Diagnostics</h4>
-        </div>
-        <div class="app-card" onclick="alert('Parts Finder Selected')">
-          <div style="font-size:28px;">⚙️</div>
-          <h4 style="margin:6px 0 0 0;" data-en="Parts Finder" data-hi="पार्ट्स खोजें">Parts Finder</h4>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LEAFLET MAP MODAL -->
-  <div id="machineMapModal">
-    <div class="machine-map-panel">
-      <h3 style="margin-top:0;" data-en="Select Worksite Location" data-hi="कार्यस्थल का स्थान चुनें">Select Worksite Location</h3>
-      <div id="machineMap"></div>
-      <div style="display:flex; gap:10px; justify-content:flex-end;">
-        <button type="button" onclick="closeMachineMap()" class="btn-yellow" style="background:var(--card-bg); color:var(--text-primary); border:1px solid var(--border-color);" data-en="Cancel" data-hi="रद्द करें">Cancel</button>
-        <button type="button" onclick="confirmLocation()" class="btn-yellow" data-en="Confirm Location" data-hi="स्थान की पुष्टि करें">Confirm Location</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // Theme Switch
     function toggleTheme() {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -880,95 +797,16 @@
       document.getElementById('themeToggleText').innerText = newTheme === 'dark' ? 'Day Brightness' : 'Night Mode';
     }
 
-    // Language Switch
     function setLanguage(lang) {
-      document.querySelectorAll('[data-en]').forEach(el => {
-        el.innerText = el.getAttribute(`data-${lang}`);
+      document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+        el.innerText = el.getAttribute('data-' + lang);
       });
     }
 
-    // Dynamic Typing Effect
-    const words = ["Fast Field Support", "24/7 Breakdown Assistance", "Hydraulic & Engine Service", "Varanasi & Nearby Regional Sites"];
-    let i = 0;
-    let timer;
-
-    function typingEffect() {
-      let word = words[i].split("");
-      var loopTyping = function() {
-        if (word.length > 0) {
-          document.getElementById('typingText').innerHTML += word.shift();
-        } else {
-          setTimeout(deletingEffect, 2000);
-          return false;
-        }
-        timer = setTimeout(loopTyping, 100);
-      };
-      loopTyping();
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function deletingEffect() {
-      let word = words[i].split("");
-      var loopDeleting = function() {
-        if (word.length > 0) {
-          word.pop();
-          document.getElementById('typingText').innerHTML = word.join("");
-        } else {
-          if (words.length > (i + 1)) {
-            i++;
-          } else {
-            i = 0;
-          }
-          setTimeout(typingEffect, 500);
-          return false;
-        }
-        timer = setTimeout(loopDeleting, 50);
-      };
-      loopDeleting();
-    }
-
-    typingEffect();
-
-    // Modal controls
-    function openAppsModal() { document.getElementById('appsModal').style.display = 'flex'; }
-    function closeAppsModal() { document.getElementById('appsModal').style.display = 'none'; }
-
-    // Map Modal logic
-    let map, marker;
-    let selectedAddress = "";
-
-    function openMachineMap() {
-      document.getElementById('machineMapModal').style.display = 'flex';
-      setTimeout(() => {
-        if (!map) {
-          map = L.map('machineMap').setView([25.3176, 82.9739], 13); // Varanasi default
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-          }).addTo(map);
-
-          marker = L.marker([25.3176, 82.9739], { draggable: true }).addTo(map);
-          
-          marker.on('dragend', function(e) {
-            const pos = marker.getLatLng();
-            selectedAddress = `Lat: ${pos.lat.toFixed(4)}, Lng: ${pos.lng.toFixed(4)} (Varanasi Region)`;
-          });
-        }
-        map.invalidateSize();
-      }, 200);
-    }
-
-    function closeMachineMap() {
-      document.getElementById('machineMapModal').style.display = 'none';
-    }
-
-    function confirmLocation() {
-      if (!selectedAddress) {
-        selectedAddress = "Varanasi Worksite Area (Pinned)";
-      }
-      document.getElementById('location').value = selectedAddress;
-      closeMachineMap();
-    }
-
-    // Back to top scroll
     window.onscroll = function() {
       const btn = document.getElementById('backToTopBtn');
       if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
@@ -977,19 +815,6 @@
         btn.classList.remove('show');
       }
     };
-    function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-
-    // Mobile Validation
-    function validateMobile() {
-      const mobileInput = document.getElementById('mobile');
-      const errorSmall = document.getElementById('mobileError');
-      const pattern = /^[6-9][0-9]{9}$/;
-      if (pattern.test(mobileInput.value)) {
-        errorSmall.style.display = 'none';
-      } else {
-        errorSmall.style.display = 'block';
-      }
-    }
   </script>
 </body>
 </html>
