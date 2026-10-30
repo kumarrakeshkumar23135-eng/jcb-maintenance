@@ -188,61 +188,6 @@
       font-size: 14px;
     }
 
-    .nav {
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .navin {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    /* Circular JM Logo Badge */
-    .logo-box {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text-primary);
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    .circular-logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #070b14, #131d33);
-      border: 2px solid #ffb700;
-      box-shadow: 0 0 12px rgba(255, 183, 0, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffb700;
-      font-weight: 800;
-      font-size: 16px;
-      letter-spacing: 0.5px;
-    }
-
-    .links {
-      display: flex;
-      gap: 16px;
-    }
-
-    .links a {
-      color: var(--text-primary);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 15px;
-      transition: color 0.2s ease;
-    }
-
-    .links a:hover {
-      color: var(--accent-yellow);
-    }
-
     .btn-yellow {
       background: var(--accent-yellow);
       color: #000 !important;
@@ -343,7 +288,7 @@
     }
 
     /* Grids & Layout Sections */
-    .stats, .services, #process, #coverage, #gallery, #request, #faq, footer {
+    .stats, .services, #process, #coverage, #gallery, #request, footer {
       padding: 40px 0;
     }
 
@@ -476,10 +421,6 @@
       .formgrid .full {
         grid-column: span 1;
       }
-      .links {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
       .topbar .container {
         flex-direction: column;
         align-items: flex-start;
@@ -519,23 +460,6 @@
       <span><span data-en="Manager: Munshi Ram" data-hi="प्रबंधक: मुंशी राम">Manager: Munshi Ram</span> · <a href="tel:8052587317" style="color:var(--accent-yellow);">8052587317</a></span>
     </div>
   </div>
-
-  <nav class="nav">
-    <div class="container navin">
-      <a class="logo-box" href="#">
-        <div class="circular-logo">JM</div>
-        <span>JCB MAINTENANCE</span>
-      </a>
-      <div class="links">
-        <a href="#services" data-en="Services" data-hi="सेवाएं">Services</a>
-        <a href="#process" data-en="How It Works" data-hi="यह कैसे काम करता है">How It Works</a>
-        <a href="#coverage" data-en="Service Area" data-hi="सेवा क्षेत्र">Service Area</a>
-        <a href="#gallery" data-en="Work" data-hi="हमारा कार्य">Work</a>
-        <a href="#request" data-en="Service Request" data-hi="सेवा अनुरोध">Service Request</a>
-        <a href="#faq" data-en="FAQ" data-hi="सामान्य प्रश्न">FAQ</a>
-      </div>
-    </div>
-  </nav>
 
   <!-- MAIN HERO SPLIT SECTION -->
   <header class="hero">
@@ -762,34 +686,9 @@
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="services">
-    <div class="container">
-      <div class="section-head">
-        <h2 data-en="Frequently Asked Questions" data-hi="अक्सर पूछे जाने वाले प्रश्न (FAQ)">Frequently Asked Questions</h2>
-        <p data-en="Got questions about our JCB service? Here are answers to common queries." data-hi="हमारी JCB सेवा के बारे में प्रश्न हैं? यहाँ सामान्य प्रश्नों के उत्तर दिए गए हैं।">Got questions about our JCB service? Here are answers to common queries.</p>
-      </div>
-      <div class="grid3">
-        <div class="card">
-          <h3 data-en="How fast can the team reach?" data-hi="टीम कितनी जल्दी पहुँच सकती है?">How fast can the team reach?</h3>
-          <p data-en="Our service team responds promptly depending on site distance within Varanasi and surrounding regional areas." data-hi="हमारी सेवा टीम वाराणसी और आसपास के क्षेत्रों में साइट की दूरी के आधार पर तुरंत प्रतिक्रिया देती है।">Our service team responds promptly depending on site distance within Varanasi and surrounding regional areas.</p>
-        </div>
-        <div class="card">
-          <h3 data-en="How do I upload a problem photo?" data-hi="मैं समस्या की फोटो कैसे अपलोड करूँ?">How do I upload a problem photo?</h3>
-          <p data-en="Use the service request form above to attach an image file of the machine issue directly." data-hi="मशीन की समस्या की छवि फ़ाइल सीधे संलग्न करने के लिए ऊपर दिए गए सेवा अनुरोध फ़ॉर्म का उपयोग करें।">Use the service request form above to attach an image file of the machine issue directly.</p>
-        </div>
-        <div class="card">
-          <h3 data-en="Who manages the service operations?" data-hi="सेवा संचालन का प्रबंधन कौन करता है?">Who manages the service operations?</h3>
-          <p data-en="Manager Munshi Ram oversees all field maintenance requests and breakdown support." data-hi="प्रबंधक मुंशी राम सभी फ़ील्ड रखरखाव अनुरोधों और ब्रेकडाउन सहायता की देखरेख करते हैं।">Manager Munshi Ram oversees all field maintenance requests and breakdown support.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <div class="circular-logo" style="margin: 0 auto 16px auto;">JM</div>
       <p style="margin: 0; font-size: 14px; color: var(--text-secondary);">© 2026 JCB Maintenance Services. All Rights Reserved.</p>
     </div>
   </footer>
