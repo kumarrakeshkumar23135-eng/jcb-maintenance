@@ -1,192 +1,230 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | JCB Maintenance</title>
-     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="description" content="Privacy Policy for JCB Maintenance Services.">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.7;
-            margin: 0;
-            background: #f5f5f5;
-            color: #333;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
-
-        h1 {
-            color: #222;
-            text-align: center;
-        }
-
-        h2 {
-            color: #333;
-            margin-top: 30px;
-        }
-
-        .updated {
-            text-align: center;
-            color: #666;
-        }
-
-        .contact {
-            background: #f7f7f7;
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        a {
-            color: #0066cc;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Privacy Policy for JCB Maintenance Services, including service-request information, uploaded photos, cookies and advertising.">
+  <title>Privacy Policy | JCB Maintenance</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #f1f5f9; --surface: #fff; --text: #172033;
+      --muted: #536176; --line: #dbe2ea; --accent: #d97706;
+      --soft: #fff7e6; --link: #075db5; --shadow: 0 12px 32px rgba(15,23,42,.08);
+    }
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --page: #070b14; --surface: #111b2d; --text: #f4f7fb;
+      --muted: #b5c0d0; --line: #29364a; --accent: #ffb700;
+      --soft: #292012; --link: #8fc4ff; --shadow: 0 12px 32px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--page); color: var(--text);
+      font: 16px/1.7 system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    }
+    .toolbar {
+      width: min(100% - 28px, 960px); margin: 18px auto 0;
+      display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 9px;
+    }
+    button {
+      min-height: 42px; padding: 9px 14px; border: 1px solid var(--line);
+      border-radius: 9px; background: var(--surface); color: var(--text);
+      font: inherit; font-weight: 650; cursor: pointer;
+    }
+    button:hover { border-color: var(--accent); }
+    .page {
+      width: min(100% - 28px, 960px); margin: 14px auto 36px;
+      padding: clamp(20px, 5vw, 48px); background: var(--surface);
+      border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow);
+    }
+    header { text-align: center; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+    .brand { color: var(--accent); font-weight: 800; letter-spacing: .04em; }
+    h1 { margin: 8px 0 2px; font-size: clamp(27px, 5vw, 40px); line-height: 1.2; }
+    .updated { color: var(--muted); margin: 8px 0 0; font-size: 14px; }
+    .intro { margin: 24px 0; padding: 16px 18px; background: var(--soft); border-left: 4px solid var(--accent); border-radius: 8px; }
+    h2 { margin: 28px 0 8px; font-size: clamp(19px, 3vw, 22px); line-height: 1.35; }
+    p { margin: 8px 0 12px; }
+    ul { padding-left: 23px; margin: 8px 0 16px; }
+    li { margin: 5px 0; }
+    a { color: var(--link); overflow-wrap: anywhere; }
+    .contact { margin-top: 12px; padding: 18px; border: 1px solid var(--line); border-radius: 12px; }
+    .contact p { margin: 4px 0; }
+    .note { color: var(--muted); font-size: 14px; }
+    footer { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); text-align: center; color: var(--muted); font-size: 13px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 600px) {
+      body { font-size: 15px; }
+      .toolbar { width: min(100% - 20px, 960px); justify-content: stretch; }
+      .toolbar button { flex: 1; }
+      .page { width: min(100% - 20px, 960px); margin-top: 10px; padding: 20px 17px; border-radius: 12px; }
+      .intro, .contact { padding: 14px; }
+      h2 { margin-top: 24px; }
+    }
+    @media (min-width: 700px) and (max-width: 1050px) {
+      .page { width: min(100% - 40px, 900px); }
+    }
+    @media print {
+      body { background: #fff; color: #000; }
+      .toolbar { display: none; }
+      .page { width: 100%; margin: 0; padding: 0; border: 0; box-shadow: none; }
+      a { color: #000; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="toolbar" aria-label="Page controls">
+    <button type="button" onclick="setLanguage('en')" aria-label="Show English">English</button>
+    <button type="button" onclick="setLanguage('hi')" aria-label="हिन्दी दिखाएं">हिन्दी</button>
+    <button type="button" onclick="toggleTheme()" id="themeButton">🌙 Dark mode</button>
+  </div>
 
-<div class="container">
+  <main class="page">
+    <header>
+      <div class="brand">JCB MAINTENANCE SERVICES</div>
+      <h1 data-en="Privacy Policy" data-hi="गोपनीयता नीति">Privacy Policy</h1>
+      <p class="updated"><strong data-en="Last updated: 8 November 2026" data-hi="अंतिम अपडेट: 8 नवंबर 2026">Last updated: 8 November 2026</strong></p>
+    </header>
 
-    <h1>Privacy Policy</h1>
-
-    <p class="updated"><strong>Last Updated: October 8, 2026</strong></p>
-
-    <p>
-        At <strong>JCB Maintenance</strong>, we respect your privacy and are committed
-        to protecting the personal information you provide when using our website
-        and maintenance services.
-    </p>
-
-    <h2>1. Information We Collect</h2>
-
-    <p>When you submit a service request through our website, we may collect:</p>
-
-    <ul>
-        <li>Customer name</li>
-        <li>Phone number</li>
-        <li>Address</li>
-        <li>Service location</li>
-        <li>Photographs uploaded by the customer</li>
-        <li>Details about the JCB or equipment problem</li>
-        <li>Other information voluntarily provided through the service request form</li>
-    </ul>
-
-    <h2>2. How We Use Your Information</h2>
-
-    <p>We may use the information you provide to:</p>
-
-    <ul>
-        <li>Contact you regarding your service request</li>
-        <li>Understand the reported JCB problem</li>
-        <li>Arrange maintenance or repair services</li>
-        <li>Communicate about appointments and service requirements</li>
-        <li>Improve our services and customer experience</li>
-        <li>Respond to questions or requests submitted through the website</li>
-    </ul>
-
-    <h2>3. Protection of Your Information</h2>
-
-    <p>
-        We take reasonable steps to protect customer information from unauthorized
-        access, misuse, alteration, or disclosure. However, no website or method
-        of transmitting information over the Internet can be guaranteed to be
-        completely secure.
-    </p>
-
-    <h2>4. Sharing of Information</h2>
-
-    <p>
-        We do not sell or rent your personal information. Your information may be
-        shared only when reasonably necessary to provide the requested service,
-        communicate with you, comply with applicable law, or protect our legal
-        rights and safety.
-    </p>
-
-    <h2>5. Customer-Uploaded Photos</h2>
-
-    <p>
-        If you upload photographs of your JCB or equipment problem, those
-        photographs may be used to understand the issue and provide the requested
-        maintenance or repair service.
-    </p>
-
-    <p>
-        Please do not upload photographs containing unnecessary sensitive personal
-        information.
-    </p>
-
-    <h2>6. Cookies and Website Technologies</h2>
-
-    <p>
-        Our website may use cookies or similar technologies to improve website
-        functionality, understand website usage, or support necessary website
-        services. Third-party services used by the website may have their own
-        privacy policies.
-    </p>
-
-    <h2>7. Third-Party Services</h2>
-
-    <p>
-        Our website may use third-party services such as hosting, analytics,
-        forms, advertising, or other website tools. These services may process
-        information according to their own privacy policies.
-    </p>
-
-    <h2>8. Data Retention</h2>
-
-    <p>
-        We retain customer information only for as long as reasonably necessary
-        to provide services, maintain business records, resolve disputes, comply
-        with legal requirements, or protect our legitimate interests.
-    </p>
-
-    <h2>9. Your Privacy Rights</h2>
-
-    <p>
-        Depending on applicable law, you may have rights regarding your personal
-        information, including requesting access to, correction of, or deletion
-        of certain information.
-    </p>
-
-    <p>
-        To make a privacy-related request, please contact us using the information
-        below.
-    </p>
-
-    <h2>10. Contact Us</h2>
-
-    <div class="contact">
-        <p><strong>JCB Maintenance</strong></p>
-        <p><strong>Manager:</strong> Munshi Ram</p>
-        <p><strong>Phone:</strong> 8052587317</p>
-        <p><strong>Email:</strong> kumarrakeshkumar23135@gmail.com</p>
+    <div class="intro">
+      <p data-en="This policy explains what information JCB Maintenance Services may receive when you visit this website or send a service request, how that information may be used, and the choices available to you. Please read it before submitting personal information."
+         data-hi="यह नीति बताती है कि इस वेबसाइट पर आने या सेवा अनुरोध भेजने पर JCB Maintenance Services को कौन-सी जानकारी मिल सकती है, उसका उपयोग कैसे किया जा सकता है और आपके पास कौन-से विकल्प हैं। व्यक्तिगत जानकारी भेजने से पहले इसे पढ़ें।">
+        This policy explains what information JCB Maintenance Services may receive when you visit this website or send a service request, how that information may be used, and the choices available to you. Please read it before submitting personal information.
+      </p>
     </div>
 
-    <h2>11. Changes to This Privacy Policy</h2>
+    <section>
+      <h2 data-en="1. Information we may collect" data-hi="1. हम कौन-सी जानकारी एकत्र कर सकते हैं">1. Information we may collect</h2>
+      <p data-en="When you use the service-request form, you may choose to provide information such as:"
+         data-hi="सेवा अनुरोध फ़ॉर्म का उपयोग करते समय आप अपनी इच्छा से निम्न जानकारी दे सकते हैं:">When you use the service-request form, you may choose to provide information such as:</p>
+      <ul>
+        <li data-en="Your name and mobile number" data-hi="आपका नाम और मोबाइल नंबर">Your name and mobile number</li>
+        <li data-en="Email address, if you provide one" data-hi="ईमेल पता, यदि आप देते हैं">Email address, if you provide one</li>
+        <li data-en="Worksite or machine location" data-hi="कार्यस्थल या मशीन का स्थान">Worksite or machine location</li>
+        <li data-en="JCB model, machine details and problem description" data-hi="JCB मॉडल, मशीन का विवरण और समस्या का वर्णन">JCB model, machine details and problem description</li>
+        <li data-en="Photos or other files you choose to upload" data-hi="आपके द्वारा अपलोड की गई फोटो या अन्य फ़ाइलें">Photos or other files you choose to upload</li>
+        <li data-en="Any other details you voluntarily include in your message" data-hi="आपके संदेश में स्वेच्छा से दी गई अन्य जानकारी">Any other details you voluntarily include in your message</li>
+      </ul>
+      <p data-en="The website's hosting provider or other technical services may also process basic technical information, such as browser or device details, security logs and information needed to deliver the website. The exact information depends on the services in use."
+         data-hi="वेबसाइट की होस्टिंग या अन्य तकनीकी सेवाएँ ब्राउज़र या डिवाइस का विवरण, सुरक्षा लॉग और वेबसाइट चलाने के लिए आवश्यक तकनीकी जानकारी भी संसाधित कर सकती हैं। वास्तविक जानकारी उपयोग की जा रही सेवाओं पर निर्भर करती है।">
+        The website's hosting provider or other technical services may also process basic technical information, such as browser or device details, security logs and information needed to deliver the website. The exact information depends on the services in use.
+      </p>
+    </section>
 
-    <p>
-        We may update this Privacy Policy from time to time to reflect changes
-        to our services, website, or legal requirements. Any updated version
-        will be posted on this page with a revised "Last Updated" date.
-    </p>
+    <section>
+      <h2 data-en="2. How we use information" data-hi="2. जानकारी का उपयोग कैसे किया जाता है">2. How we use information</h2>
+      <p data-en="Information submitted through the website may be used to:"
+         data-hi="वेबसाइट के माध्यम से भेजी गई जानकारी का उपयोग इन उद्देश्यों के लिए किया जा सकता है:">Information submitted through the website may be used to:</p>
+      <ul>
+        <li data-en="Review and respond to your service request" data-hi="आपके सेवा अनुरोध की समीक्षा करने और जवाब देने के लिए">Review and respond to your service request</li>
+        <li data-en="Contact you about the reported machine issue or service arrangements" data-hi="मशीन की बताई गई समस्या या सेवा व्यवस्था के बारे में आपसे संपर्क करने के लिए">Contact you about the reported machine issue or service arrangements</li>
+        <li data-en="Understand the issue using the description, location and photos you provide" data-hi="आपके दिए गए विवरण, स्थान और फोटो से समस्या समझने के लिए">Understand the issue using the description, location and photos you provide</li>
+        <li data-en="Maintain service records, handle enquiries and improve the website" data-hi="सेवा रिकॉर्ड रखने, पूछताछ संभालने और वेबसाइट में सुधार करने के लिए">Maintain service records, handle enquiries and improve the website</li>
+        <li data-en="Meet legal obligations and protect the website and our rights" data-hi="कानूनी दायित्वों को पूरा करने और वेबसाइट तथा हमारे अधिकारों की रक्षा के लिए">Meet legal obligations and protect the website and our rights</li>
+      </ul>
+    </section>
 
-    <h2>12. Acceptance</h2>
+    <section>
+      <h2 data-en="3. Service requests, forms and uploaded photos" data-hi="3. सेवा अनुरोध, फ़ॉर्म और अपलोड की गई फोटो">3. Service requests, forms and uploaded photos</h2>
+      <p data-en="Information and files submitted through the service-request form may be processed by the website's form and hosting provider (for example, Netlify if Netlify Forms is enabled for this site) and made available to the site operator so the request can be reviewed. Their handling of information is also subject to the provider's own terms and privacy policy."
+         data-hi="सेवा अनुरोध फ़ॉर्म के माध्यम से भेजी गई जानकारी और फ़ाइलों को वेबसाइट का फ़ॉर्म या होस्टिंग प्रदाता (उदाहरण के लिए, यदि इस साइट पर Netlify Forms सक्रिय है तो Netlify) संसाधित कर सकता है और अनुरोध की समीक्षा के लिए वेबसाइट संचालक को उपलब्ध करा सकता है। प्रदाता की अपनी शर्तें और गोपनीयता नीति भी लागू होती हैं।">
+        Information and files submitted through the service-request form may be processed by the website's form and hosting provider (for example, Netlify if Netlify Forms is enabled for this site) and made available to the site operator so the request can be reviewed. Their handling of information is also subject to the provider's own terms and privacy policy.
+      </p>
+      <p data-en="Please upload only photos relevant to the machine problem. Avoid including identity documents, payment-card details or other sensitive personal information in photos or descriptions."
+         data-hi="केवल मशीन की समस्या से संबंधित फोटो अपलोड करें। फोटो या विवरण में पहचान-पत्र, भुगतान कार्ड की जानकारी या अन्य संवेदनशील व्यक्तिगत जानकारी शामिल न करें।">
+        Please upload only photos relevant to the machine problem. Avoid including identity documents, payment-card details or other sensitive personal information in photos or descriptions.
+      </p>
+    </section>
 
-    <p>
-        By using our website and submitting information through our service
-        request form, you acknowledge that you have read and understood this
-        Privacy Policy.
-    </p>
+    <section>
+      <h2 data-en="4. Cookies, advertising and Google AdSense" data-hi="4. कुकीज़, विज्ञापन और Google AdSense">4. Cookies, advertising and Google AdSense</h2>
+      <p data-en="This website may display advertisements provided by Google AdSense. Google and its advertising partners may use cookies or similar technologies to store or access information on your browser, measure advertising performance, prevent fraud and, where permitted by your settings and applicable rules, show personalized or non-personalized ads."
+         data-hi="इस वेबसाइट पर Google AdSense के विज्ञापन दिखाए जा सकते हैं। Google और उसके विज्ञापन भागीदार आपके ब्राउज़र में जानकारी रखने या पढ़ने, विज्ञापन प्रदर्शन मापने, धोखाधड़ी रोकने और आपकी सेटिंग तथा लागू नियमों के अनुसार व्यक्तिगत या गैर-व्यक्तिगत विज्ञापन दिखाने के लिए कुकीज़ या समान तकनीकों का उपयोग कर सकते हैं।">
+        This website may display advertisements provided by Google AdSense. Google and its advertising partners may use cookies or similar technologies to store or access information on your browser, measure advertising performance, prevent fraud and, where permitted by your settings and applicable rules, show personalized or non-personalized ads.
+      </p>
+      <p data-en="You can learn how Google uses information from sites or apps that use its services in Google's Privacy Policy. You can also review or change available ad-personalization settings in Google Ads Settings. Blocking cookies in your browser may affect some website or advertising features."
+         data-hi="Google की सेवाओं का उपयोग करने वाली वेबसाइटों या ऐप्स से मिली जानकारी का Google कैसे उपयोग करता है, यह उसकी गोपनीयता नीति में पढ़ें। उपलब्ध विज्ञापन-वैयक्तिकरण सेटिंग Google Ads Settings में देख या बदल सकते हैं। ब्राउज़र में कुकीज़ बंद करने से वेबसाइट या विज्ञापन की कुछ सुविधाएँ प्रभावित हो सकती हैं।">
+        You can learn how Google uses information from sites or apps that use its services in Google's Privacy Policy. You can also review or change available ad-personalization settings in Google Ads Settings. Blocking cookies in your browser may affect some website or advertising features.
+      </p>
+      <ul>
+        <li><a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google uses information from sites or apps that use its services</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a></li>
+        <li><a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google Ads Settings</a></li>
+      </ul>
+    </section>
 
-</div>
+    <section>
+      <h2 data-en="5. Sharing and third-party services" data-hi="5. जानकारी साझा करना और तीसरे पक्ष की सेवाएँ">5. Sharing and third-party services</h2>
+      <p data-en="We do not sell your personal information. Information may be handled by service providers that help operate the website, process forms, host content, provide security or deliver advertisements. We may also disclose information when required by law or when reasonably necessary to protect people, the website or our legal rights. Third-party providers operate under their own terms and privacy notices."
+         data-hi="हम आपकी व्यक्तिगत जानकारी बेचते नहीं हैं। वेबसाइट चलाने, फ़ॉर्म संसाधित करने, सामग्री होस्ट करने, सुरक्षा देने या विज्ञापन दिखाने में सहायता करने वाले सेवा प्रदाता जानकारी संसाधित कर सकते हैं। कानून द्वारा आवश्यक होने पर या लोगों, वेबसाइट अथवा हमारे कानूनी अधिकारों की रक्षा के लिए भी जानकारी साझा की जा सकती है। तीसरे पक्ष के प्रदाताओं की अपनी शर्तें और गोपनीयता सूचनाएँ होती हैं।">
+        We do not sell your personal information. Information may be handled by service providers that help operate the website, process forms, host content, provide security or deliver advertisements. We may also disclose information when required by law or when reasonably necessary to protect people, the website or our legal rights. Third-party providers operate under their own terms and privacy notices.
+      </p>
+    </section>
 
+    <section>
+      <h2 data-en="6. Data security and retention" data-hi="6. डेटा सुरक्षा और जानकारी रखने की अवधि">6. Data security and retention</h2>
+      <p data-en="We take reasonable steps appropriate to the way this website is operated to protect information. No method of online transmission or electronic storage is completely secure, so absolute security cannot be promised. Information is kept only for as long as reasonably needed for the service request, business records, legal requirements or handling disputes, and is then deleted or otherwise dealt with where practicable."
+         data-hi="हम वेबसाइट के संचालन के अनुरूप जानकारी की सुरक्षा के लिए उचित कदम उठाते हैं। इंटरनेट पर जानकारी भेजने या इलेक्ट्रॉनिक रूप से रखने का कोई तरीका पूरी तरह सुरक्षित नहीं है, इसलिए पूर्ण सुरक्षा की गारंटी नहीं दी जा सकती। जानकारी केवल सेवा अनुरोध, व्यावसायिक रिकॉर्ड, कानूनी आवश्यकताओं या विवादों को संभालने के लिए आवश्यक अवधि तक रखी जाती है और जहाँ व्यावहारिक हो, उसके बाद हटाई जाती है या उचित तरीके से निपटाई जाती है।">
+        We take reasonable steps appropriate to the way this website is operated to protect information. No method of online transmission or electronic storage is completely secure, so absolute security cannot be promised. Information is kept only for as long as reasonably needed for the service request, business records, legal requirements or handling disputes, and is then deleted or otherwise dealt with where practicable.
+      </p>
+    </section>
+
+    <section>
+      <h2 data-en="7. Your choices and requests" data-hi="7. आपके विकल्प और अनुरोध">7. Your choices and requests</h2>
+      <p data-en="You may choose not to submit optional information, although this may limit our ability to respond to a service request. You may contact us to ask about information you have submitted or to request correction or deletion. We may need to retain some information where required by law or for legitimate record-keeping, and we may need to verify your request."
+         data-hi="आप वैकल्पिक जानकारी न देने का विकल्प चुन सकते हैं, हालाँकि इससे सेवा अनुरोध का जवाब देने की हमारी क्षमता सीमित हो सकती है। आपके द्वारा भेजी गई जानकारी के बारे में पूछने या उसमें सुधार अथवा उसे हटाने का अनुरोध करने के लिए हमसे संपर्क करें। कानून या वैध रिकॉर्ड रखने के उद्देश्य से कुछ जानकारी रखना आवश्यक हो सकता है और आपके अनुरोध की पुष्टि भी करनी पड़ सकती है।">
+        You may choose not to submit optional information, although this may limit our ability to respond to a service request. You may contact us to ask about information you have submitted or to request correction or deletion. We may need to retain some information where required by law or for legitimate record-keeping, and we may need to verify your request.
+      </p>
+    </section>
+
+    <section>
+      <h2 data-en="8. Children's privacy" data-hi="8. बच्चों की गोपनीयता">8. Children's privacy</h2>
+      <p data-en="This website is intended for people seeking construction-equipment maintenance information or services, not specifically for children. We do not knowingly ask children to submit personal information. If you believe a child has submitted personal information, please contact us so we can review the request."
+         data-hi="यह वेबसाइट निर्माण उपकरण रखरखाव की जानकारी या सेवाएँ चाहने वाले लोगों के लिए है, विशेष रूप से बच्चों के लिए नहीं। हम जानबूझकर बच्चों से व्यक्तिगत जानकारी जमा करने के लिए नहीं कहते। यदि आपको लगता है कि किसी बच्चे ने व्यक्तिगत जानकारी भेजी है, तो कृपया हमसे संपर्क करें ताकि हम अनुरोध की समीक्षा कर सकें।">
+        This website is intended for people seeking construction-equipment maintenance information or services, not specifically for children. We do not knowingly ask children to submit personal information. If you believe a child has submitted personal information, please contact us so we can review the request.
+      </p>
+    </section>
+
+    <section>
+      <h2 data-en="9. Changes to this policy" data-hi="9. इस नीति में बदलाव">9. Changes to this policy</h2>
+      <p data-en="We may update this policy when our website, services, advertising arrangements or legal requirements change. The revised policy will be posted on this page with a new update date. Please review this page periodically."
+         data-hi="वेबसाइट, सेवाओं, विज्ञापन व्यवस्था या कानूनी आवश्यकताओं में बदलाव होने पर हम इस नीति को अपडेट कर सकते हैं। संशोधित नीति नई अपडेट तिथि के साथ इसी पृष्ठ पर प्रकाशित की जाएगी। कृपया समय-समय पर इस पृष्ठ को देखें।">
+        We may update this policy when our website, services, advertising arrangements or legal requirements change. The revised policy will be posted on this page with a new update date. Please review this page periodically.
+      </p>
+    </section>
+
+    <section>
+      <h2 data-en="10. Contact us" data-hi="10. हमसे संपर्क करें">10. Contact us</h2>
+      <div class="contact">
+        <p><strong>JCB Maintenance Services</strong></p>
+        <p><strong data-en="Manager:" data-hi="प्रबंधक:">Manager:</strong> Munshi Ram</p>
+        <p><strong data-en="Phone:" data-hi="फ़ोन:">Phone:</strong> <a href="tel:+918052587317">+91 80525 87317</a></p>
+        <p><strong data-en="Email:" data-hi="ईमेल:">Email:</strong> <a href="mailto:kumarrakeshkumar23135@gmail.com">kumarrakeshkumar23135@gmail.com</a></p>
+      </div>
+    </section>
+
+    <footer>
+      <span data-en="© 2026 JCB Maintenance Services. Please review this policy before submitting a service request."
+            data-hi="© 2026 JCB Maintenance Services. सेवा अनुरोध भेजने से पहले कृपया इस नीति को पढ़ें।">© 2026 JCB Maintenance Services. Please review this policy before submitting a service request.</span>
+      <p><a href="index.html" data-en="Return to Home" data-hi="होम पेज पर वापस जाएँ">Return to Home</a></p>
+    </footer>
+  </main>
+
+  <script>
+    function setLanguage(language) {
+      document.documentElement.lang = language;
+      document.querySelectorAll('[data-' + language + ']').forEach(function (element) {
+        element.textContent = element.getAttribute('data-' + language);
+      });
+    }
+    function toggleTheme() {
+      const root = document.documentElement;
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      document.getElementById('themeButton').textContent = next === 'dark' ? '☀️ Light mode' : '🌙 Dark mode';
+    }
+  </script>
 </body>
 </html>
