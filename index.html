@@ -16,6 +16,9 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
   <style>
     /* =========================================================
        ULTIMATE PROFESSIONAL THEME VARIABLES & MOBILE STYLES
@@ -928,7 +931,7 @@
       const submitBtn = this.querySelector('button[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
 
-      const fileInput = document.getElementById('photo');
+      const fileInput = document.getElementById('photoFile');
 
       function sendData(base64Data = "", mimeType = "", fileName = "") {
         const formData = {
@@ -954,6 +957,13 @@
           body: JSON.stringify(formData)
         })
         .then(() => {
+          // Trigger Party Confetti Blaster Effect!
+          confetti({
+            particleCount: 120,
+            spread: 80,
+            origin: { y: 0.6 }
+          });
+
           alert("Service request submitted successfully!");
           document.getElementById('jcb-maintenance-request').reset();
           if (submitBtn) submitBtn.disabled = false;
